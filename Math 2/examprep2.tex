@@ -1,0 +1,285 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref,ragged2e,amsmath,multicol,gensymb,setspace,
+fancyhdr,amsfonts,tikz,pgfplots,nccmath,enumerate,verbatim}
+\usepackage[a4paper, width=216mm, height=297mm, margin=3cm]{geometry}
+\usepgfplotslibrary{polar,fillbetween}
+\usepgflibrary{shapes.geometric}
+\usetikzlibrary{calc,patterns,arrows}
+\newcommand\mylog[1]{\mathop{{}^{#1}\mathrm{log}}}
+\pgfplotsset{compat=1.15}
+\pgfplotsset{my style/.append style={axis x line=middle, axis y line=
+middle, xlabel={$x$}, ylabel={$y$}, axis equal }}
+\usepackage{etoolbox}
+\newcommand{\zerodisplayskips}{%
+  \setlength{\abovedisplayskip}{0pt}%
+  \setlength{\belowdisplayskip}{0pt}%
+  \setlength{\abovedisplayshortskip}{0pt}%
+  \setlength{\belowdisplayshortskip}{0pt}}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Halaman \thepage}
+\rhead{Barisan dan Deret   \\ (\href{https://twitter.com/ahmadzakiyudin_/}{@ahmadzakiyudin\_}) }
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\setlength{\columnsep}{0.8cm}
+\begin{document}
+\setstretch{1.3}
+\section{Barisan Tak Hingga}
+Barisan tak hingga $a_1,a_2,a_3,\cdots$ dapat dituliskan dalam notasi kurung $\{a_n\}_{n=1}^\infty$ atau $\{a_n\}$\\
+Barisan $\{a_n\}$ disebut konvergen ke $L$ jika $\displaystyle \lim_{n\rightarrow +\infty} a_n = L$ dengan $-\infty<L<\infty$
+\section{Sifat-Sifat Barisan Konvergen}
+Diberikan barisan $\{a_n\}$ dan $\{b_n\}$ yang masing-masing konvergen ke limit $L_1$ dan $L_2$ dan $c$ adalah suatu konstanta, maka
+\begin{enumerate}
+	\item $\displaystyle \lim_{n\rightarrow +\infty} c = c$
+	\item $\displaystyle \lim_{n\rightarrow +\infty} ca_n = c\lim_{n\rightarrow +\infty} a_n = cL_1$
+	\item $\displaystyle \lim_{n\rightarrow +\infty} (a_n\pm b_n) = \lim_{n\rightarrow +\infty} a_n \pm \lim_{n\rightarrow +\infty} b_n = L_1\pm L_2$
+	\item $\displaystyle \lim_{n\rightarrow +\infty} (a_n\cdot b_n) = \lim_{n\rightarrow +\infty} a_n \cdot \lim_{n\rightarrow +\infty} b_n = L_1L_2$
+	\item $\displaystyle \lim_{n\rightarrow +\infty} \left(\dfrac{a_n}{b_n}\right) = \dfrac{\displaystyle\lim_{n\rightarrow +\infty} a_n}{\displaystyle\lim_{n\rightarrow +\infty} b_n} = \dfrac{L_1}{L_2}$, ~~jika $L_2\neq 0$
+\end{enumerate}
+Jika barisan $\{a_n\}$ dan $\{c_n\}$ masing-masing konvergen ke $L$ dan $a_n\leq b_n\leq c_n$ untuk $n\geq K$ ($K$ bilangan bulat tertentu), maka $\{b_n\}$ juga konvergen ke $L$
+\section{Barisan Monoton}
+Suatu barisan $\{a_n\}$ disebut naik jika $a_1<a_2<a_3<\cdots <a_n<\cdots$\\
+Suatu barisan $\{a_n\}$ disebut turun jika $a_1>a_2>a_3>\cdots >a_n>\cdots$\\
+Suatu barisan $\{a_n\}$ disebut tidak naik jika $a_1\geq a_2\geq a_3\geq \cdots \geq a_n\geq \cdots$\\
+Suatu barisan $\{a_n\}$ disebut tidak turun jika $a_1\leq a_2\leq a_3\leq \cdots \leq a_n\leq \cdots$\\
+Secara umum, untuk semua pasangan suku-suku yang berurutan $a_n$ dan $a_{n+1}$\\
+Jika $a_{n+1}-a_n>0$ maka disebut barisan naik\\
+Jika $a_{n+1}-a_n<0$ maka disebut barisan turun\\
+Jika $a_{n+1}-a_n\leq 0$ maka disebut barisan tidak naik \\
+Jika $a_{n+1}-a_n\geq 0$ maka merupakan barisan tidak turun\\
+Jika semua suku pada barisan tersebut positif, maka \\
+Barisan monoton naik jika $a_{n+1}/a_n>1$\\
+Barisan monoton turun jika $a_{n+1}/a_n<1$\\
+Barisan monoton tidak naik jika $a_{n+1}/a_n\leq 1$\\
+Barisan monoton tidak turun jika $a_{n+1}/a_n\geq 1$
+\section{Deret Tak Hingga}
+Deret tak hingga adalah suatu ekspresi yang dapat ditulis dalam bentuk 
+$$ \sum_{k=1}^\infty u_k = u_1+u_2+u_3+\cdots+u_k+\cdots $$
+Bilangan-bilangan $u_1,u_2,u_3,\cdots$ disebut suku-suku dari deret tersebut.\\
+Misalkan $\{s_n\}$ adalah barisan dari jumlahan parsial deret $u_1+u_2+\cdots+u_k+\cdots$. Jika barisan $\{s_n\}$ konvergen ke suatu limit $S$, maka deret tersebut konvergen dan $S$ adalah jumlah dari deret tersebut, dapat ditulis 
+$$ S=\sum_{k=1}^\infty u_k $$
+Jika barisan dari jumlahan parsial tersebut divergen, maka deret tersebut divergen dan tidak mempunyai jumlah.\\
+Deret geometri tak hingga 
+$$ \sum_{k=0}^\infty ar^k = a+ar+ar^2+ar^3+\cdots + ar^{k-1}+\cdots \qquad (a\neq 0) $$
+konvergen jika $|r|<1$ dan divergen jika $|r|\geq 1$. Jika deret konvergen, maka jumlah deret adalah 
+$$ \sum_{k=0}^\infty ar^k =  \dfrac{a}{1-r} $$
+Deret harmonik merupakan deret divergen dengan bentuk 
+$$ \sum_{k=1}^\infty \dfrac{1}{k} = 1+\dfrac{1}{2}+\dfrac{1}{3}+\dfrac{1}{4}+\dfrac{1}{5}+\cdots  $$
+Deret$-p$ atau deret hyperharmonic merupakan deret dengan bentuk 
+$$ \sum_{k=1}^\infty \dfrac{1}{k^p} = 1+\dfrac{1}{2^p}+\dfrac{1}{3^p}+\dfrac{1}{4^p}+\dfrac{1}{5^p}+\cdots  $$
+yang konvergen jika $p>1$ dan divergen jika $0<p\leq 1$
+\section{Sifat-Sifat Aljabar Deret Tak Hingga}
+\begin{enumerate}
+	\item Jika $\displaystyle \sum_{k=1}^\infty u_k$ dan $\displaystyle \sum_{k=1}^\infty v_k$ deret konvergen, maka $\displaystyle \sum_{k=1}^\infty (u_k\pm v_k)$ juga konvergen dengan jumlah 
+$$ \sum_{k=1}^\infty (u_k\pm v_k) = \sum_{k=1}^\infty u_k \pm \sum_{k=1}^\infty v_k $$
+	\item Jika $c$ adalah konstanta tak nol, maka deret $\displaystyle \sum_{k=1}^\infty u_k$ dan $\displaystyle \sum_{k=1}^\infty cu_k$ keduanya konvergen atau keduanya divergen. Jika deretnya konvergen, maka jumlahnya
+$$ \sum_{k=1}^\infty cu_k = c \sum_{k=1}^\infty u_k   $$
+\item Penghapusan sejumlah berhingga suku-suku pada suatu deret tidak memengaruhi konvergensi dan divergensi dari deret tersebut
+\end{enumerate}
+\section{Uji Integral}
+Misalkan $\displaystyle \sum_{k=1}^\infty u_k$ adalah deret dengan suku-suku positif dan $f(x)$ merupakan fungsi yang dihasilkan jika $k$ diganti $x$ dalam rumus $u_k$. Jika $f$ adalah deret turun dan kontinu pada interval $[a,+\infty)$, maka 
+$$ \sum_{k=a}^\infty u_k \qquad\text{dan}\qquad \int_a^{+\infty} f(x)\, dx $$
+keduanya konvergen atau keduanya divergen. 
+\section{Uji Rasio}
+Jika diberikan deret $\displaystyle \sum_{k=1}^\infty u_k$ dengan suku-suku positif dan dimisalkan bahwa $\displaystyle \rho = \lim_{k\rightarrow +\infty} \dfrac{u_{k+1}}{u_k}$, maka 
+\begin{enumerate}
+	\item Deret konvergen jika $\rho<1$
+	\item Deret divergen jika $\rho>1$
+	\item Deret mungkin konvergen atau divergen jika $\rho=1$ sehingga diperlukan uji yang lain
+\end{enumerate}
+\section{Prinsip Informal}
+\begin{enumerate}
+	\item Prinsip Informal I: Suku-suku konstan dalam penyebut $u_k$ dapat dihilangkan tanpa berpengaruh pada konvergensi maupun divergensi deret
+	\item Prinsip Informal II: Jika sebuah polinomial dalam $k$ tampak sebagai faktor pembilang atau penyebut dari $u_k$, maka semua suku (kecuali $k$ dengan pangkat tertinggi) pada polinomial dapat dihilangkan tanpa memengaruhi konvergensi maupun divergensi deret.
+\end{enumerate}
+\section{Uji Deret Berganti Tanda}
+Suatu deret berganti tanda dengan bentuk 
+$$ \sum_{k=1}^\infty (-1)^k a_k = -a_1+a_2-a_3+a_4-\cdots $$
+atau 
+$$ \sum_{k=1}^\infty (-1)^{k+1} a_k = a_1-a_2+a_3-a_4+\cdots $$
+dan diasumsikan $a_k$ positif merupakan deret yang konvergen jika kedua kondisi berikut terpenuhi
+\begin{enumerate}
+	\item $a_1>a_2>a_3>\cdots >a_k>\cdots$
+	\item $\displaystyle \lim_{k\rightarrow +\infty} a_k = 0$
+\end{enumerate}
+\section{Deret Pangkat}
+Deret pangkat memiliki bentuk 
+$$ \sum_{n=0}^{+\infty} a_n(x-c)^n = a_0+a_1(x-c)+a_2(x-c)^2+a_3(x-c)^3+\cdots $$
+yang dapat dipastikan konvergen untuk $x=c$ karena 
+$$ \sum_{n=0}^{+\infty} a_n(x-c)^n = 0 $$
+\section{Deret Taylor dan Maclaurin}
+Jika $f(x)$ memiliki turunan pada semua tingkat di $x=a$, maka deret Taylor untuk $f(x)$ di sekitar $x=a$ menjadi
+$$ \sum_{k=0}^\infty \dfrac{f^{(k)}(a)}{k!} (x-a)^k = f(a)+f'(a)(x-a)+\dfrac{f''(a)}{2!}(x-a)^2+\cdots +\dfrac{f^{(k)}(a)}{k!}(x-a)^k +\cdots $$
+Pada kasus khusus yaitu $a=0$, deret Taylor tersebut disebut deret Maclaurin untuk $f(x)$ yang memiliki bentuk
+$$ \sum_{k=0}^\infty \dfrac{f^{(k)}(0)}{k!} x^k = f(0)+f'(0)(x)+\dfrac{f''(0)}{2!}x^2+\cdots +\dfrac{f^{(k)}(0)}{k!}x^k+\cdots $$
+Berikut dua deret Maclaurin yang paling umum dijumpai
+\begin{enumerate}
+	\item Deret Maclaurin
+	$$ \dfrac{1}{1-x} = \sum_{k=0}^\infty x^k = 1+x+x^2+x^3+\cdots $$
+	memiliki selang konvergensi $-1<x<1$
+	\item Deret Maclaurin
+	$$ e^x = \sum_{k=0}^\infty \dfrac{x^k}{k!} = 1+x+\dfrac{x^2}{2!}+\dfrac{x^3}{3!} + \cdots $$
+	memiliki selang konvergensi seluruh bilangan real
+\end{enumerate}
+\section{Turunan dan Integral Deret Pangkat}
+Jika suatu fungsi $f(x)$ direpresentasikan oleh suatu deret pangkat misal
+$$ f(x) = \sum_{k=0}^\infty c_k(x-a)^k $$
+dengan jari-jari konvergensi $R$, maka 
+\begin{enumerate}
+	\item Deret-deret suku diferensialnya 
+	$$ \sum_{k=0}^\infty \dfrac{d}{dx} [c_k(x-a)^k] = \sum_{k=0}^\infty kc_k (x-a)^{k-1} $$
+	memiliki jari-jari konvergensi $R$
+	\item Fungsi $f(x)$ diferensiabel pada selang $(a-R,a+R)$ dan untuk setiap $x$ dalam selang ini 
+	$$ f'(x) = \sum_{k=0}^\infty \dfrac{d}{dx} [c_k(x-a)^k] = \sum_{k=0}^\infty kc_k(x-a)^{k-1} $$
+	\item Deret-deret suku integrasinya 
+	$$ \sum_{k=0}^\infty \left[\int c_k(x-a)^k \, dx\right] = \sum_{k=0}^\infty \dfrac{c_k}{k+1} (x-a)^{k+1} $$
+	memiliki jari-jari konvergensi $R$
+	\item Fungsi $f(x)$ kontinu pada selang $(a-R,a+R)$ dan untuk setiap $x$ dalam selang ini
+	$$ \int f(x)\, dx = \sum_{k=0}^\infty \left[\int c_k(x-a)^k \, dx\right] +C $$
+	\item Untuk setiap $\alpha$ dan $\beta$ dalam selang $(a-R,a+R)$, maka
+	$$ \int_\alpha^\beta f(x)\, dx = \sum_{k=0}^\infty \left[\int_\alpha^\beta c_k(x-a)^k \, dx\right]$$ 
+\end{enumerate}
+\section{Latihan Soal}
+\begin{enumerate}
+	\item \begin{enumerate}
+		\item Gunakan uji yang sesuai untuk menentukan apakah deret
+	$$ \sum_{n=1}^\infty \dfrac{4}{3^n+1} \text{ konvergen atau divergen} $$
+		\item Dapatkan jumlahan deret 
+		$$ \sum_{k=1}^\infty \left[\dfrac{7}{3^k}+\dfrac{6}{(k+3)(k+4)}\right] $$
+	\end{enumerate}
+	\textbf{Penyelesaian:}
+	\begin{enumerate}
+		\item Dengan Prinsip Informal I, suku konstan yaitu 1 pada penyebut dapat dihilangkan tanpa memengaruhi konvergensi deret tersebut, sehingga bentuknya menjadi 
+		$$ \sum_{n=1}^\infty \dfrac{4}{3^n} $$
+		Bentuk tersebut merupakan deret geometri tak hingga dengan $a=\dfrac{4}{3}$ dan $r=\dfrac{1}{3}$ yang jelas konvergen.
+		\item Tinjau bahwa 
+		$$ \sum_{k=1}^\infty \left[\dfrac{7}{3^k}+\dfrac{6}{(k+3)(k+4)}\right] = \sum_{k=1}^\infty \dfrac{7}{3^k}+\sum_{k=1}^\infty \dfrac{6}{(k+3)(k+4)}  $$
+		Perhatikan bahwa $\displaystyle \sum_{k=1}^\infty \dfrac{7}{3^k} $ merupakan deret geometri tak hingga dengan $a=\dfrac{7}{3}$ dan $r=\dfrac{1}{3}$ sehingga 
+		$$ \sum_{k=1}^\infty \dfrac{7}{3^k} = \dfrac{a}{1-r} = \dfrac{\frac{7}{3}}{1-\frac{1}{3}} = \dfrac{7}{2} $$
+		Perhatikan pula $\dfrac{6}{(k+3)(k+4)}=6\left(\dfrac{1}{k+3}-\dfrac{1}{k+4}\right)$ sehingga 
+		\begin{align*}
+		\sum_{k=1}^\infty \dfrac{6}{(k+3)(k+4)} &= \lim_{k\rightarrow \infty} 6\bigg[\left(\dfrac{1}{4}-\dfrac{1}{5}\right)+\left(\dfrac{1}{5}-\dfrac{1}{6}\right)+\left(\dfrac{1}{6}-\dfrac{1}{7}\right)+\cdots \\
+		&\qquad \qquad +\left(\dfrac{1}{k+2}-\dfrac{1}{k+3}\right)+\left(\dfrac{1}{k+3}-\dfrac{1}{k+4}\right)\bigg]\\
+		&= \lim_{k\rightarrow \infty} 6 \left[\dfrac{1}{4}-\dfrac{1}{k+4}\right]\\
+		&= 6\left[\dfrac{1}{4}-0\right]=\dfrac{3}{2}
+		\end{align*}
+		Jadi 
+		$$ \sum_{k=1}^\infty \left[\dfrac{7}{3^k}+\dfrac{6}{(k+3)(k+4)}\right] =\dfrac{7}{2} + \dfrac{3}{2} = 5 $$
+	\end{enumerate}
+	\item Selesaikan 
+	\begin{enumerate}
+		\item Tentukan konvergensi barisan $\left\{ n\sin\frac{\pi}{n}\right\}^\infty_{n=1}$;\\
+		Dari jawaban tersebut, tentukan konvergensi $\left\{ \dfrac{n^2}{2n+1}\sin\dfrac{\pi}{n}\right\}^\infty_{n=1}$
+		\item Dengan uji perbandingan, tentukan deret berikut konvergen ataukah divergen?
+		$$ \sum_{n=0}^\infty \dfrac{2^n\sin^2(5n)}{4^n+\cos^2 n} $$
+	\end{enumerate}
+	\textbf{Penyelesaian:}
+	\begin{enumerate}
+		\item Akan dicari $\displaystyle \lim_{n\rightarrow +\infty} n\sin \frac{\pi}{n}=L_1$\\ Misalkan $\dfrac{1}{n}=k$, maka $k\rightarrow 0^+$ karena $n\rightarrow +\infty$, sehingga
+		$$ L_1=\lim_{k\rightarrow 0^+} \dfrac{\sin \pi k}{k} = \pi $$ 
+		Jadi barisan $\left\{ n\sin\frac{\pi}{n}\right\}^\infty_{n=1}$ konvergen ke $\pi$\\
+		Selanjutnya tinjau, 
+		$$ \dfrac{n^2}{2n+1}\sin \frac{\pi}{n}=\dfrac{n}{2n+1}\times n\sin\frac{\pi}{n}$$ 
+		Dapat diperoleh $\displaystyle \lim_{n\rightarrow +\infty} \dfrac{n}{2n+1}=\lim_{n\rightarrow +\infty} \dfrac{1}{2+\frac{1}{n}}=\dfrac{1}{2}= L_2$\\
+		Akibatnya $$ \lim_{n\rightarrow +\infty} \dfrac{n^2}{2n+1}\sin \frac{\pi}{n} = \lim_{n\rightarrow +\infty} \dfrac{n}{2n+1}\cdot \lim_{n\rightarrow +\infty} n\sin \frac{\pi}{n} = L_1\cdot L_2=\dfrac{\pi}{2} $$
+		Jadi barisan $\left\{ \dfrac{n^2}{2n+1}\sin\dfrac{\pi}{n}\right\}^\infty_{n=1}$ konvergen ke $\dfrac{\pi}{2}$
+		\item Tinjau bahwa $0\leq \sin^2(5n)\leq 1$ sehingga $2^n\sin^2(5n)\leq 2^n$\\
+		Tinjau pula $0\leq \cos^2 n\leq 1$ sehingga $4^n\leq 4^n+\cos^2 n$ dan $\dfrac{1}{4^n+\cos^2 n}\leq \dfrac{1}{4^n}$\\
+		Akibatnya 
+		$$ \dfrac{2^n\sin^2(5n)}{4^n+\cos^2 n} \leq \dfrac{2^n}{4^n} = \dfrac{1}{2^n} $$
+		Karena $\displaystyle \sum_{n=0}^\infty \dfrac{1}{2^n}$ merupakan deret geometri tak hingga dengan $a=1$ dan $r=\dfrac{1}{2}$ yang jelas konvergen sehingga deret $\displaystyle \sum_{n=0}^\infty \dfrac{2^n\sin^2(5n)}{4^n+\cos^2 n}$ juga konvergen.
+	\end{enumerate}
+	\item Buktikan $\displaystyle \sum_{k=2}^\infty \dfrac{1}{k(\ln k)^p}$ konvergen jika $p>1$\\
+	\textbf{Penyelesaian:}\\
+	Uji konvergensi deret tersebut dengan uji integral berikut
+	\begin{align*}
+	\int_2^\infty \dfrac{1}{x(\ln x)^p}\, dx
+	\end{align*}
+	Misalkan $\ln x=u$ sehingga $\dfrac{1}{x}\, dx=du$, akan dihitung dulu integralnya tanpa menggunakan batas integral
+	\begin{align*}
+	\int \dfrac{1}{x(\ln x)^p}\, dx &= \int \dfrac{1}{u^p} \,du\\
+	&= \int u^{-p} \, du\\
+	&= \dfrac{u^{1-p}}{1-p}\\
+	&= \dfrac{(\ln x)^{1-p}}{1-p}
+	\end{align*}
+	Dapat diperoleh 
+	\begin{align*}
+	\int_2^\infty \dfrac{1}{x(\ln x)^p}\, dx &= \lim_{a\rightarrow\infty} \int_2^a \dfrac{1}{x(\ln x)^p}\, dx\\
+	&= \lim_{a\rightarrow\infty} \left(\dfrac{(\ln a)^{1-p}}{1-p}-\dfrac{(\ln 2)^{1-p}}{1-p}\right)\\
+	&= \dfrac{1}{1-p}\left( \lim_{a\rightarrow\infty} \dfrac{1}{(\ln a)^{p-1}}-\dfrac{1}{(\ln 2)^{p-1}}\right)
+	\end{align*}
+	Jika $p>1$, diperoleh
+	 $$\dfrac{1}{1-p}\left( \lim_{a\rightarrow\infty} \dfrac{1}{(\ln a)^{p-1}}-\dfrac{1}{(\ln 2)^{p-1}}\right) = \dfrac{1}{1-p}\left(0-\dfrac{1}{(\ln 2)^{p-1}}\right) = \dfrac{1}{(p-1)(\ln 2)^{p-1}}$$
+	Dapat disimpulkan deret tersebut konvergen jika $p>1$\\
+	Jika $p<1$, maka $p-1<0$ sehingga
+	 $$\dfrac{1}{1-p}\left( \lim_{a\rightarrow\infty} \dfrac{1}{(\ln a)^{p-1}}-\dfrac{1}{(\ln 2)^{p-1}}\right) = \infty$$
+	Dapat disimpulkan deret tersebut divergen jika $p<1$
+	\item Selesaikan:
+	\begin{enumerate}
+		\item Diberikan $\{a_n\}^\infty_{n=1}$ dengan $a_n=\dfrac{1}{n^2}+\dfrac{3}{n^2}+\dfrac{5}{n^2}+\cdots +\dfrac{2n-1}{n^2}$\\
+		Tuliskan 5 suku pertama barisan, dan dapatkan $\displaystyle \lim_{n\rightarrow \infty} a_n$
+		\item Jika diberikan barisan $(a_n)=(0,1,0,1,0,1,\dots)$ dan $(b_n)=(1,0,1,0,1,0,\dots)$ maka selidiki tentang konvergensi dari: $1. (a_n+b_n);\quad 2. (a_n\cdot b_n);\quad 3. \left(\dfrac{a_n}{b_n}\right)$
+	\end{enumerate}
+	\textbf{Penyelesaian:}
+	\begin{enumerate}
+		\item Tinjau bahwa 
+		$$ a_n = \dfrac{1+3+5+\cdots +2n-1}{n^2} =\dfrac{\frac{n}{2}(1+(2n-1))}{n^2}=1$$
+		untuk $n=1,2,3,\cdots$. Diperoleh $(a_n)=(1,1,1,\dots)$ sehingga $a_1=a_2=a_3=a_4=a_5=1$ merupakan 5 suku pertama barisan tersebut dan $\displaystyle \lim_{n\rightarrow \infty} a_n=1$ 
+		\item \begin{enumerate}
+		\item Tinjau $(a_n+b_n)=(1,1,1,\dots)$ sehingga barisan tersebut konvergen ke 1
+		\item Tinjau $(a_n\cdot b_n)=(0,0,0,\dots)$ sehingga barisan tersebut konvergen ke 0
+		\item Tinjau untuk $n=2$, $\dfrac{a_n}{b_n}$ tidak terdefinisi sehingga konvergensi barisan $\left(\dfrac{a_n}{b_n}\right)$ tidak dapat ditentukan
+		\end{enumerate}
+	\end{enumerate}
+	\item Diketahui fungsi $f(x)=\dfrac{1}{1-ax}$
+	\begin{enumerate}
+		\item Dapatkan deret Maclaurin dari $f(x)$ (Nyatakan dalam notasi sigma)
+		\item Gunakan hasil dari (a) untuk mendapatkan deret Maclaurin dari fungsi $f(x)=\dfrac{1}{(1-ax)^2}$
+	\end{enumerate}
+	Perhatikan: bilangan $a$ dalam soal ini adalah digit terakhir NRP anda. Misalkan NRP anda adalah 06111940000076 maka $a=6$, jika $a=0$ ganti dengan angka 10.\newpage
+	\textbf{Penyelesaian:}
+	\begin{enumerate}
+		\item Tinjau 
+		\begin{multicols}{2}
+		\begin{align*}
+		f(x) &= \dfrac{1}{1-ax}\\
+		f'(x) &= \dfrac{a}{(1-ax)^2}\\
+		f''(x) &= \dfrac{a\cdot 2a}{(1-ax)^3}\\
+		f'''(x) &= \dfrac{a\cdot 2a\cdot 3a}{(1-ax)^4}\\
+		&~~\vdots\\
+		f^{(k)}(x) &= \dfrac{a\cdot 2a\cdot 3a\cdots ka}{(1-ax)^{k+1}} = \dfrac{k!a^k}{(1-ax)^{k+1}}
+		\end{align*}
+		\begin{align*}
+		f(0) &= 1\\
+		f'(0) &= a\\
+		f''(0) &= a\cdot 2a\\
+		f'''(0) &= a\cdot 2a\cdot 3a\\
+		&~~\vdots\\
+		f^{(k)}(0) &= a\cdot 2a\cdot 3a\cdots ka=k!a^k
+		\end{align*}
+		\end{multicols}
+		Diperoleh deret Maclaurin dari $f(x)$
+		\begin{align*}
+		\sum_{k=0}^\infty \dfrac{f^{(k)}(0)}{k!}x^k &= f(0) + f'(0)x +\dfrac{f''(0)}{2!}x^2+\cdots+\dfrac{f^{(k)}(0)}{k!}x^k+\cdots\\
+		&= 1+(a)(x)+\dfrac{2!a^2}{2!}x^2+\cdots+\dfrac{k!a^k}{k!}x^k+\cdots\\
+		&= 1+(ax)+(ax)^2+\cdots (ax)^k+\cdots\\
+		&= \sum_{k=0}^\infty (ax)^k
+\end{align*}				 
+		Alternatif penyelesaian dengan metode substitusi.\\
+		Tinjau deret Maclaurin dari $\displaystyle \dfrac{1}{1-x}=1+x+x^2+x^3+\cdots=\sum_{k=0}^\infty x^k$. Dengan metode substitusi diperoleh deret Maclaurin dari $f(x)$ adalah 
+		$$ \dfrac{1}{1-ax}=1+ax+(ax)^2+(ax)^3+\cdots =\sum_{k=0}^\infty (ax)^k$$
+		\item Tinjau $\dfrac{d}{dx}(ax)^k=ka(ax)^{k-1}$ sehingga
+	\begin{align*}
+	\dfrac{d}{dx} \left(\dfrac{1}{1-ax}\right) &= \dfrac{d}{dx} \sum_{k=0}^\infty (ax)^k\\
+	\dfrac{a}{(1-ax)^2} &= \sum_{k=0}^\infty ka(ax)^{k-1}\\
+	\dfrac{a}{(1-ax)^2} &= a\sum_{k=0}^\infty k(ax)^{k-1}\\
+	\dfrac{1}{(1-ax)^2} &= \sum_{k=0}^\infty k(ax)^{k-1} = 1+2(ax)+3(ax)^2+\cdots 
+	\end{align*}
+	\end{enumerate}
+\end{enumerate}
+\end{document}

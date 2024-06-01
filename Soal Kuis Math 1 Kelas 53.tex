@@ -1,0 +1,86 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{ragged2e}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage[a4paper, width=216mm, height=297mm, margin=3cm]{geometry}
+\usepackage{gensymb}
+\usepackage{enumerate}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{pgfplots}
+\DeclareMathOperator{\sech}{sech}
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Kuis 2 Matematika I Kelas 53}
+\lhead{Halaman \thepage}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\setlength{\columnsep}{0.8cm}
+\begin{document}
+ \begin{titlepage}
+    \vspace*{\fill}
+    \begin{center}
+      \Huge {SOAL KUIS 2\\MATEMATIKA I \\KELAS 53}
+    \end{center}
+    \vspace*{\fill}
+  \end{titlepage}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\newcount\arrowcount
+\newcommand\arrows[1]{
+        \global\arrowcount#1
+        \ifnum\arrowcount>0
+                \begin{matrix}[c]
+                \expandafter\nextarrow
+        \fi
+}
+
+\newcommand\nextarrow[1]{
+        \global\advance\arrowcount-1
+        \ifx\relax#1\relax\else \xrightarrow{#1}\fi
+        \ifnum\arrowcount=0
+                \end{matrix}
+        \else
+                \\
+                \expandafter\nextarrow
+        \fi
+}
+\newcommand*\oline[1]{%
+  \vbox{%
+    \hrule height 0.5pt%                  % Line above with certain width
+    \kern0.25ex%                          % Distance between line and content
+    \hbox{%
+      \kern-0.1em%                        % Distance between content and left side of box, negative values for lines shorter than content
+      \ifmmode#1\else\ensuremath{#1}\fi%  % The content, typeset in dependence of mode
+      \kern-0.1em%                        % Distance between content and left side of box, negative values for lines shorter than content
+    }% end of hbox
+  }% end of vbox
+}
+\newpage
+\setstretch{1.3}
+\section*{Soal Kuis 2 (Waktu 75 Menit)}
+\begin{enumerate}
+	\item Hitunglah $(-1+3i)^2 \left(\dfrac{2}{1-i}+\dfrac{2-i}{1+i}\right)$.
+	\item Misalkan $z_1=1+i, z_2=3-2i$, hitunglah $\left|\dfrac{2z_1+\oline{z_2}-i}{z_2-2z_1+7}\right|$.
+	\item Buktikan $\oline{z_1+z_2}=\oline{z_1}+\oline{z_2}$. \textit{(Petunjuk: misalkan $z_1=a+bi$ dan $z_2=c+di$)}
+	\item Hitunglah $(2-2\sqrt{3}i)^{10}$.
+	\item Dapatkan akar-akar kompleks dari persamaan $z^3-i=0$ dan gambarkan akar-akarnya pada bidang kompleks.
+\end{enumerate}
+\end{document}

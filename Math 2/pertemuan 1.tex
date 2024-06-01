@@ -1,0 +1,200 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref,ragged2e,amsmath,multicol,gensymb,setspace,
+fancyhdr,amsfonts,tikz,pgfplots,nccmath,enumerate,verbatim}
+\usepackage[a4paper, width=216mm, height=297mm, margin=3cm]{geometry}
+\usepgfplotslibrary{polar,fillbetween}
+\usepgflibrary{shapes.geometric}
+\usetikzlibrary{calc,patterns,arrows}
+\newcommand\mylog[1]{\mathop{{}^{#1}\mathrm{log}}}
+\DeclareMathOperator{\sech}{sech}
+\DeclareMathOperator{\csch}{csch}
+\DeclareMathOperator{\arcsec}{arcsec}
+\DeclareMathOperator{\arccot}{arcCot}
+\DeclareMathOperator{\arccsc}{arcCsc}
+\DeclareMathOperator{\arccosh}{arcCosh}
+\DeclareMathOperator{\arcsinh}{arcsinh}
+\DeclareMathOperator{\arctanh}{arctanh}
+\DeclareMathOperator{\arcsech}{arcsech}
+\DeclareMathOperator{\arccsch}{arcCsch}
+\DeclareMathOperator{\arccoth}{arcCoth} 
+\pgfplotsset{compat=1.15}
+\pgfplotsset{my style/.append style={axis x line=middle, axis y line=
+middle, xlabel={$x$}, ylabel={$y$}, axis equal }}
+\usepackage{etoolbox}
+\newcommand{\zerodisplayskips}{%
+  \setlength{\abovedisplayskip}{0pt}%
+  \setlength{\belowdisplayskip}{0pt}%
+  \setlength{\abovedisplayshortskip}{0pt}%
+  \setlength{\belowdisplayshortskip}{0pt}}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Halaman \thepage}
+\rhead{Pembahasan Soal EAS 2020 \\ (\href{https://twitter.com/ahmadzakiyudin_/}{@ahmadzakiyudin\_})}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\setlength{\columnsep}{0.8cm}
+\begin{document}
+ \begin{titlepage}
+    \vspace*{\fill}
+    \begin{center}
+      \Huge {PERTEMUAN 6 \\ ASISTENSI MATEMATIKA I\\PEMBAHASAN SOAL EAS 2020}\\[0.4 cm]
+      \huge {Ahmad Hisbu Zakiyudin}
+    \end{center}
+    \vspace*{\fill}
+  \end{titlepage}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\newcount\arrowcount
+\newcommand\arrows[1]{
+        \global\arrowcount#1
+        \ifnum\arrowcount>0
+                \begin{matrix}[c]
+                \expandafter\nextarrow
+        \fi
+}
+
+\newcommand\nextarrow[1]{
+        \global\advance\arrowcount-1
+        \ifx\relax#1\relax\else \xrightarrow{#1}\fi
+        \ifnum\arrowcount=0
+                \end{matrix}
+        \else
+                \\
+                \expandafter\nextarrow
+        \fi
+}
+\newpage
+\setstretch{1.3}
+\section*{Soal Latihan 1.1}
+\begin{enumerate}
+	\item[12a)] Dapatkan $dy/dx$ dengan diferensiasi logaritmik dari $y=x^{\cos 2x}$
+	\item[17)] Sketsalah grafik $y=x^{1/\ln x}$
+	\item[21)] Misalkan $f(x)=e^{|x|}$
+	\begin{enumerate}
+		\item Apakah $f$ kontinu di $x=0$?
+		\item Apakah $f$ dapat diturunkan di $x=0$
+		\item Sketsalah grafik dari $f$
+	\end{enumerate}
+	\textbf{Jawab:}
+	Uraikan dulu menjadi bentuk $f(x)=\begin{cases}e^x, ~~x\geq 0\\e^{-x},~~x<0\end{cases}$
+	\begin{enumerate}
+		\item \begin{enumerate}[i.]
+			\item $f(0)=e^0=1$ ada
+			\item $\displaystyle \lim_{x\rightarrow 0^-}f(x)=\lim_{x\rightarrow 0^-}e^{-x}=e^0=1$ dan $\displaystyle \lim_{x\rightarrow 0^+}f(x)=\lim_{x\rightarrow 0^+}e^x=e^0=1$ sehingga $\displaystyle \lim_{x\rightarrow 0}f(x)=1$ 
+			\item $\displaystyle \lim_{x\rightarrow 0}f(x)=f(0)=1$
+		\end{enumerate}
+		Jadi $f(x)$ kontinu di $x=0$
+		\item Tinjau bahwa $f'_-(x)=-e^{-x}$ dan $f'_+(x)=e^x$ sehingga $f'_-(x)\neq f'_+(x)$. Jadi $f(x)$ tidak dapat diturunkan di $x=0$
+	\end{enumerate}
+	\item[25)] Satu dari fungsi dasar pada Matematika Statistika adalah
+	$$ f(x) = \dfrac{1}{\sqrt{2\pi\sigma}}\exp\left[-\dfrac{1}{2}(\dfrac{x-\mu}{\sigma})^2\right]$$ 
+	di mana $\mu$ dan $\sigma$ adalah konstanta sehingga $\sigma>0$ dan $-\infty<\mu<+\infty$
+	\begin{enumerate}
+		\item Tentukan titik belok dan titik ekstrim relatifnya
+		\item Dapatkan $\displaystyle \lim_{x\rightarrow +\infty} f(x)$ dan $\displaystyle \lim_{x\rightarrow -\infty} f(x)$
+		\item Sketsalah grafik $f$
+	\end{enumerate}
+	\textbf{Jawab:} 
+	Tinjau 
+	$$ f'(x) = \dfrac{1}{\sqrt{2\pi\sigma}} \exp\left[-\dfrac{1}{2}(\dfrac{x-\mu}{\sigma})^2\right]\times \left(-\dfrac{2}{2\sigma}(\dfrac{x-\mu}{\sigma})\right)=-\dfrac{x-\mu}{\sigma^2\sqrt{2\pi\sigma}} \exp\left[-\dfrac{1}{2}(\dfrac{x-\mu}{\sigma})^2\right]$$
+	Cari $f''(x)$ dengan aturan perkalian
+	\begin{align*}
+	f''(x)&=-\dfrac{1}{\sigma^2\sqrt{2\pi\sigma}}\exp\left[-\dfrac{1}{2}(\dfrac{x-\mu}{\sigma})^2\right] -  \dfrac{x-\mu}{\sigma^2\sqrt{2\pi\sigma}}\exp\left[-\dfrac{1}{2}(\dfrac{x-\mu}{\sigma})^2\right]\times \left(-\dfrac{2}{2\sigma}(\dfrac{x-\mu}{\sigma})\right)\\
+	&= -\dfrac{1}{\sigma^2\sqrt{2\pi\sigma}}\exp\left[-\dfrac{1}{2}(\dfrac{x-\mu}{\sigma})^2\right] +  \dfrac{(x-\mu)^2}{\sigma^4\sqrt{2\pi\sigma}}\exp\left[-\dfrac{1}{2}(\dfrac{x-\mu}{\sigma})^2\right]
+	\end{align*}
+\end{enumerate}
+\newpage
+\section*{Soal Latihan 1.2}
+\begin{enumerate}
+	\item Dapatkan $f^{-1}(x)$ dari 
+	\begin{enumerate}
+		\item[b)] $f(x)=7x-6$
+		\item[d)] $f(x)=\sqrt[3]{2x-1}$
+		\item[f)] $f(x)=e^{1/x}$
+		\item[h)] $f(x)=\begin{cases} 2x, x\leq 0\\
+		x^2, x>0 \end{cases}$
+	\end{enumerate}
+	\item Gunakan Persamaan (1.31) untuk mendapatkan turunan $f^{-1}$, dan cek kembali kerjaan Anda dengan diferensiasi implisit
+	\begin{enumerate}
+		\item[b)] $f(x)=1/x^2,x>0$
+		\item[d)] $f(x)=2x^5+x^3+1$
+	\end{enumerate}
+	\item[9d)] Berapakah nilai $x$ sehingga berlaku $\tan(\tan^{-1}x)=x$
+	\item[15c)] Buatlah sketsa grafik dari $y=\cos^{-1} \frac{1}{3}x$
+	\item[27a)] Buktikan $\sin^{-1}x=\tan^{-1} \dfrac{x}{\sqrt{1-x^2}}$
+	\item[28)] Dapatkan $\dfrac{dy}{dx}$
+	\begin{enumerate}
+		\item[b)] $y=\cos^{-1}(2x+1)$
+		\item[e)] $y=\sec^{-1}(x^7)$
+		\item[h)] $y=\dfrac{1}{tan^{-1}x}$
+		\item[k)] $y=\ln(\cos^{-1}x)$
+		\item[n)] $y=x^2(sin^{-1}x)^3$
+		\item[q)] $y=\tan^{-1}\left(\dfrac{1-x}{1+x}\right)$
+		\item[t)] $\tan^{-1}(xe^{2x})$
+	\end{enumerate}
+	\item[29)] Hitung integral berikut:
+	\begin{enumerate}
+		\item[b)] $\displaystyle \int_{-1}^1\dfrac{dx}{1+x^2}$
+		\item[e)] $\displaystyle \int \dfrac{dx}{\sqrt{1-4x^2}}$
+		\item[h)] $\displaystyle \int \dfrac{e^x}{1+e^{2x}} \, dx$
+	\end{enumerate}
+\end{enumerate}
+\newpage
+\section*{Soal Latihan 1.3}
+\begin{enumerate}
+	\item[2a)] Buktikan kesamaan $\cosh 2x = 2\sinh^2 x +1$
+	\item[4)] Dapatkan $\dfrac{dy}{dx}$
+	\begin{enumerate}
+		\item $y=\sinh (4x-8)$
+		\item[d)] $y=\sech (e^{2x})$
+		\item[h)] $y=\sinh^3 (2x)$
+	\end{enumerate}
+	\item[5)] Hitung integral dari
+	\begin{enumerate}
+		\item $\displaystyle \int \sinh^6 x\cosh x\, dx$
+		\item[d)] $\displaystyle \int \coth^2 x\csch^2 x\, dx$
+		\item[g)] $\displaystyle \int \tanh^6 x\sech^3 x\, dx$
+	\end{enumerate}
+	\item[16)] \begin{enumerate}
+	\item Buktikan $\cosh^{-1} x=\ln(x+\sqrt{x^2-1}),x\geq 1$
+	\item Gunakan bagian (a) untuk mendapatkan turunan dari $\cosh^{-1}x$
+	\end{enumerate}
+	\item[21)] Dapatkan $\dfrac{dy}{dx}$ dari persamaan berikut
+	\begin{enumerate}
+		\item[i)] $y=\sinh^{-1}(1/x)$
+		\item[j)] $\cosh^{-1}(\cosh x)$
+		\item[k)] $y=\ln(\cosh^{-1}x)$
+		\item[l)] $y=\sqrt{\coth^{-1}x}$
+		\item[m)] $y=e^x\sech^{-1}x$
+		\item[n)] $y=x^2(\sinh^{-1}x)^3$
+		\item[o)] $y=\sinh^{-1}(\tanh x)$
+		\item[p)] $y=\cosh^{-1}(\sinh^{-1}x)$
+		\item[q)] $y=\tanh^{-1}\left(\dfrac{1-x}{1+x}\right)$
+	\end{enumerate}
+\end{enumerate}
+\newpage
+\section*{Soal Tambahan}
+Misal $F(x)=f(2g(x))$ dengan $f(x)=x^4+x^3+1$ untuk $0\leq x\leq 2$, dan $g(x)=f^{-1}(x)$. Dapatkan $F'(3)$\\
+Kita punya $F'(x)=2f'(2g(x))g'(x)$, selanjutnya akan kita cari $g'(x)=(f^{-1})'(x)$. \\Misalkan $y=f^{-1}(x)$, maka $$ x=f(y)=y^4+y^3+1 $$
+sehingga diperoleh
+\begin{align*}
+\dfrac{dx}{dy} &= 4y^3+3y^2\\
+\dfrac{dy}{dx} = \dfrac{1}{dx/dy} &= \dfrac{1}{4y^3+3y^2}
+\end{align*}
+Perhatikan bahwa $g(3)=f^{-1}(3)$, dan ingat jika $y=f(x)$ maka $x=f^{-1}(y)$ sehingga $g(3)$ merupakan penyelesaian dari $x^4+x^3+1=3$. \\
+Mudah terlihat bahwa $x=1$ memenuhi persamaan tersebut sehingga $g(3)=1$. \\
+Ingat bahwa $g(x)=f^{-1}(x)=y$ sehingga $y=g(3)=1$ dan diperoleh 
+$$ g'(3)=(f^{-1})'(3)=\dfrac{1}{4(1)^3+3(1)^2} = \dfrac{1}{7}$$ 
+Substitusi semua yang telah diperoleh maka $$F'(3)=2f'(2g(3))g'(3) = \dfrac{2f'(2)}{7} $$
+Dapat kita tentukan bahwa $f'(x)=4x^3+3x^2$ sehingga $f'(2)=4(2)^3+3(2)^2=44$ dan 
+$$ F'(3) = \dfrac{2\times 44}{7} = \dfrac{88}{7} $$
+\end{document}

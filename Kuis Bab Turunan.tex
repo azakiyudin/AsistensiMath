@@ -1,0 +1,116 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\usepackage{ragged2e}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage[a4paper, width=216mm, height=297mm, margin=3cm]{geometry}
+\usepackage{enumerate}
+\usepackage{setspace}
+\usepackage{fancyhdr}
+\usepackage{tikz}
+\usepackage{array}
+\usepackage{pgfplots}
+\DeclareMathOperator{\sech}{sech}
+\pgfplotsset{compat=1.15}
+\usetikzlibrary{arrows}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Kuis Bab Turunan\\ Matematika I Kelas 53}
+\lhead{Halaman \thepage}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\setlength{\columnsep}{0.8cm}
+\begin{document}
+\setstretch{1.3}
+\section*{Soal Kuis Bab Turunan}
+\begin{enumerate}
+	\item Selidiki apakah $f(x)=\begin{cases}x^2+3, \quad &x>-2\\
+	3-2x,\quad &x\leq -2\end{cases}$ dapat diturunkan di mana-mana?
+	\item Dapatkan $\dfrac{dy}{dx}$ dari $y^3 = y+x^3y^2$.
+	\item Misalkan $l$ adalah panjang diagonal persegi panjang yang sisi-sisinya $x$ dan $y$. Asumsikan $x$ dan $y$ adalah fungsi waktu.
+	\begin{enumerate}
+		\item Bagaimana hubungan $\dfrac{dl}{dt},\dfrac{dx}{dt},\dfrac{dy}{dt}$?
+		\item Jika $x$ bertambah dengan laju 2 cm/det dan $y$ berkurang dengan laju 1 cm/det. Seberapa cepat panjang diagonal berubah jika pada saat itu $x=5$ cm dan $y=12$ cm. Apakah diagonal bertambah atau berkurang pada saat itu?
+	\end{enumerate}
+	\item Tentukan semua nilai $k$ sedemikian hingga $\dfrac{x^2}{k}+\dfrac{k}{x}$ mempunyai ekstrem relatif pada $x=2$.
+	\item Tentukan volume maksimum, beserta tinggi dan jari-jari kerucut dengan panjang sisi miring adalah $L$. (Nyatakan dalam variabel $L$)
+\end{enumerate}
+\newpage
+\section*{Jawaban}
+\begin{enumerate}
+	\item Tinjau bahwa $x^2+3$ dan $3-2x$ adalah polinomial sehingga cukup ditinjau untuk $x=-2$. Perhatikan bahwa
+	\begin{align*}
+	f'_-(-2) &= \lim_{h\rightarrow 0^-} \dfrac{f(-2+h)-f(-2)}{h}\\
+	&= \lim_{h\rightarrow 0^-} \dfrac{(-2+h)^2+3-(3-2(-2))}{h}\\
+	&= \lim_{h\rightarrow 0^-} \dfrac{4-4h+h^2+3-3-4}{h}\\
+	&= \lim_{h\rightarrow 0^-} -4+h = -4\\
+	f'_+(-2) &= \lim_{h\rightarrow 0^+} \dfrac{f(-2+h)-f(-2)}{h}\\
+	&= \lim_{h\rightarrow 0^+} \dfrac{3-2(-2+h)-(3-2(-2))}{h}\\
+	&= \lim_{h\rightarrow 0^+} \dfrac{-2h}{h} = -2
+	\end{align*}
+	Karena $f'_-(-2)\neq f'_+(-2)$, maka $f(x)$ tidak dapat diturunkan pada $x=-2$.
+	\item Dengan turunan implisit dan aturan perkalian, didapatkan
+	\begin{align*}
+	\dfrac{d}{dx}[y^3] &= \dfrac{d}{dx}\left[y+x^3y^2\right]\\
+	3y^2\dfrac{dy}{dx} &= \dfrac{dy}{dx}+3x^2y^2+x^3(2y)\dfrac{dy}{dx}\\
+	3y^2\dfrac{dy}{dx}-\dfrac{dy}{dx}-2x^3y\dfrac{dy}{dx}&= 3x^2y^2\\
+	(3y^2-2x^3y-1) \dfrac{dy}{dx} &= 3x^2y^2\\
+	\dfrac{dy}{dx} &= \dfrac{3x^2y^2}{3y^2-2x^3y-1}
+	\end{align*}
+	\item Karena $l$ adalah panjang diagonal persegi panjang dengan panjang sisi-sisinya adalah $x$ dan $y$, maka $l^2=x^2+y^2$
+	\begin{enumerate}
+		\item Turunkan terhadap $t$ diperoleh 
+	\begin{align*}
+	\dfrac{d}{dt}[l^2]&=\dfrac{d}{dt}[x^2+y^2]\\
+	2l\dfrac{dl}{dt} &= 2x\dfrac{dx}{dt}+2y\dfrac{dy}{dt}\\
+	l\dfrac{dl}{dt} &= x\dfrac{dx}{dt}+y\dfrac{dy}{dt}
+	\end{align*}
+	\item Dari soal, kita punya
+	\begin{align*}
+	\dfrac{dx}{dt}\bigg|_{x=5} = 2 \text{ cm/det} \qquad \dfrac{dy}{dt}\bigg|_{y=12} = -1 \text{ cm/det}
+	\end{align*}
+	Saat $x=5$ cm dan $y=12$ cm diperoleh $l=13$ cm.\\
+	Yang ditanyakan soal adalah $\dfrac{dl}{dt}\bigg|_{l=13}$. \\
+	Dengan jawaban bagian (a), diperoleh 
+	\begin{align*}
+	13\dfrac{dl}{dt} &= 5(2)-12(1)\\
+	\dfrac{dl}{dt} &= -\dfrac{2}{13}
+	\end{align*}
+	Jadi diagonal berkurang $\dfrac{2}{13}$ cm/det pada saat itu.
+	\end{enumerate}
+	\item Pada soal, diinginkan ekstrem relatif pada $x=2$ sehingga turunan pertama dari $\dfrac{x^2}{k}+\dfrac{k}{x} $pada titik $x=2$ bernilai 0. Perhatikan bahwa 
+	\begin{align*}
+	\dfrac{d}{dx}\left[\dfrac{x^2}{k}+\dfrac{k}{x^2}\right] &= \dfrac{2x}{k}-\dfrac{k}{x^2}
+	\end{align*}
+	Saat $x=2$ diperoleh 
+	\begin{align*}
+	\dfrac{4}{k}-\dfrac{k}{4} &= 0\\
+	\dfrac{16-k^2}{4k} &= 0\\
+	\dfrac{(4-k)(4+k)}{4k} &= 0
+	\end{align*}
+	Diperoleh $k=4$ dan $k=-4$.
+	\item Misalkan jari-jari kerucut adalah $r$ dan tingginya adalah $t$, maka diperoleh hubungan antara tinggi, jari-jari, dan panjang sisi miring dari kerucut adalah $L^2=r^2+t^2$. \\
+	Selanjutnya, ingat bahwa volume kerucut adalah $V=\dfrac{\pi}{3}r^2t$. Karena $r^2=L^2-t^2$, maka 
+	\begin{align*}
+	V&=\dfrac{\pi}{3}(L^2-t^2)t\\
+	V&=\dfrac{\pi}{3}(tL^2-t^3)
+	\end{align*}
+	Volume maksimumnya dicapai ketika $\dfrac{dV}{dt} =0$, yaitu 
+	\begin{align*}
+	\dfrac{dV}{dt} = \dfrac{\pi}{3}(L^2-3t^2) &= 0\\
+	3t^2 &= L^2\\
+	t^2 &= \dfrac{1}{3}L^2
+	\end{align*}
+	Karena tinggi tidak mungkin negatif atau $t>0$, maka $t=\dfrac{L}{\sqrt{3}}$.\\ 
+	Dapat diperoleh $r=\sqrt{L^2-\dfrac{L^2}{3}} = \dfrac{L\sqrt{2}}{\sqrt{3}}$.\\
+	Diperoleh pula $V=\dfrac{\pi}{3}\left(\dfrac{L^3}{\sqrt{3}}-\dfrac{L^3}{3\sqrt{3}}\right) = \dfrac{\pi}{3}\left(\dfrac{2L^3}{3\sqrt{3}}\right)=\dfrac{2\pi L^3}{9\sqrt{3}}$.
+\end{enumerate}
+\end{document}

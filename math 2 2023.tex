@@ -1,0 +1,120 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref,ragged2e,amsmath,multicol,setspace,
+fancyhdr,amsfonts,tikz,pgfplots,nccmath,enumerate,verbatim}
+\usepackage[a4paper, width=216mm, height=297mm, margin=3cm]{geometry}
+\usepgfplotslibrary{polar,fillbetween}
+\usepgflibrary{shapes.geometric}
+\usetikzlibrary{calc,patterns,arrows}
+\newcommand\mylog[1]{\mathop{{}^{#1}\mathrm{log}}}
+\pgfplotsset{compat=1.15}
+\pgfplotsset{my style/.append style={axis x line=middle, axis y line=
+middle, xlabel={$x$}, ylabel={$y$}, axis equal }}
+\usepackage{etoolbox}
+\newcommand{\zerodisplayskips}{%
+  \setlength{\abovedisplayskip}{0pt}%
+  \setlength{\belowdisplayskip}{0pt}%
+  \setlength{\abovedisplayshortskip}{0pt}%
+  \setlength{\belowdisplayshortskip}{0pt}}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Halaman \thepage}
+\rhead{Rangkuman\\ (\href{https://instagram.com/ahmadzakiyudin_/}{@ahmadzakiyudin\_})}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\setlength{\columnsep}{0.8cm}
+\begin{document}
+ \begin{titlepage}
+    \vspace*{\fill}
+    \begin{center}
+      \Huge {RANGKUMAN \\ MATEMATIKA 2}\\[0.4 cm]
+      \huge {Ahmad Hisbu Zakiyudin}
+    \end{center}
+    \vspace*{\fill}
+  \end{titlepage}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\newcount\arrowcount
+\newcommand\arrows[1]{
+        \global\arrowcount#1
+        \ifnum\arrowcount>0
+                \begin{matrix}[c]
+                \expandafter\nextarrow
+        \fi
+}
+ 
+\newcommand\nextarrow[1]{
+        \global\advance\arrowcount-1
+        \ifx\relax#1\relax\else \xrightarrow{#1}\fi
+        \ifnum\arrowcount=0
+                \end{matrix}
+        \else
+                \\
+                \expandafter\nextarrow
+        \fi
+}
+\newpage
+\setstretch{1.3}
+\section*{Sifat-Sifat Logaritma}
+Untuk suatu $a,b,c>0$ dan $a\neq 1$ berlaku
+\begin{multicols}{2}
+\begin{enumerate}[a)]
+	\item $\mylog{a} 1 = 0$
+	\item $\mylog{a} a = 1$
+	\item $\mylog{a} bc = \mylog{a} b + \mylog{a} c$
+	\item $\mylog{a} \frac{b}{c} = \mylog{a} b - \mylog{a} c$
+	\item $\mylog{a} b^r = r\mylog{a} b $
+	\item $\mylog{a} \frac{1}{c} = -\mylog{a} c$
+\end{enumerate}
+\end{multicols}
+\section*{Eksponensial Natural}
+\begin{align*}
+e=\lim_{x\rightarrow \infty} \left(1+\frac{1}{x}\right)^x \qquad\text{ dan } \qquad e = \lim_{x\rightarrow 0} (1+x)^{\frac{1}{x}}
+\end{align*}
+\section*{Teorema pada Turunan}
+Jika $u=f(x)$ dan $v=g(x)$, maka 
+\begin{enumerate}
+	\item $\dfrac{d}{dx} [uv] = u'v + v'u$
+	\item $\dfrac{d}{dx} \dfrac{u}{v} = \dfrac{u'v-v'u}{v^2}$ dengan $v\neq 0$
+	\item $\dfrac{d}{dx} = \dfrac{d}{du}\dfrac{du}{dx}$\end{enumerate}
+\section*{Logaritma Natural}
+Untuk $x>0$ berlaku
+\begin{enumerate}
+	\item $\ln x = \displaystyle \int_1^x \dfrac{1}{t} \, dt$
+	\item $\dfrac{d}{dx} \ln x = \dfrac{1}{x}$
+\end{enumerate}
+\section*{Turunan dan Integral Fungsi Eksponensial}
+\begin{enumerate}
+	\item $\dfrac{d}{dx} [e^x] = e^x$
+	\item $\dfrac{d}{dx} [a^x] = a^x\ln a$
+	\item $\displaystyle \int e^x \, dx = e^x +C$
+	\item $\displaystyle \int a^x \, dx = \dfrac{a^x}{\ln a}$
+\end{enumerate}
+\section*{Turunan Fungsi Invers}
+\begin{enumerate}
+	\item $(f^{-1})'(x) = \dfrac{1}{f'(f^{-1}(x))}$
+	\item $\dfrac{dy}{dx} = \dfrac{1}{dx/dy}$
+\end{enumerate}
+\section*{Turunan dan Integral Fungsi Invers Trigonometri}
+\begin{multicols}{2}
+\begin{enumerate}
+	\item $\dfrac{d}{dx} [\sin^{-1}(x)] = \dfrac{1}{\sqrt{1-x^2}}$
+	\item $\dfrac{d}{dx} [\cos^{-1}(x)] = -\dfrac{1}{\sqrt{1-x^2}}$
+	\item $\dfrac{d}{dx} [\tan^{-1}(x)] = \dfrac{1}{1+x^2}$
+	\item $\dfrac{d}{dx} [\cot^{-1}(x)] = -\dfrac{1}{1+x^2}$
+	\item $\dfrac{d}{dx} [\sec^{-1}(x)] = \dfrac{1}{x\sqrt{x^2-1}}$
+	\item $\dfrac{d}{dx} [\csc^{-1}(x)] = -\dfrac{1}{x\sqrt{x^2-1}}$
+	\item $\displaystyle \int \dfrac{1}{\sqrt{1-x^2}}\, dx = [\sin^{-1}(x)]+ C$  
+	\item $\displaystyle \int \dfrac{1}{1+x^2}\, dx = [\tan^{-1}(x)]+ C$  
+	\item $\displaystyle \int \dfrac{1}{x\sqrt{x^2-1}}\, dx = [\sec^{-1}(x)]+ C$  
+\end{enumerate}
+\end{multicols}
+\end{document}

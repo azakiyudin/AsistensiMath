@@ -1,0 +1,187 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref,ragged2e,amsmath,multicol,setspace,
+fancyhdr,amsfonts,tikz,pgfplots,nccmath,enumerate,verbatim}
+\usepackage[a4paper, width=216mm, height=297mm, margin=3cm]{geometry}
+\usepgfplotslibrary{polar,fillbetween}
+\usepgflibrary{shapes.geometric}
+\usepgfplotslibrary{external}
+\usetikzlibrary{calc,patterns,arrows}
+\newcommand\mylog[1]{\mathop{{}^{#1}\mathrm{log}}}
+\pgfplotsset{compat=1.15}
+\pgfplotsset{my style/.append style={axis x line=middle, axis y line=
+middle, xlabel={$x$}, ylabel={$y$}, axis equal }}
+\usepackage{etoolbox}
+\newcommand{\zerodisplayskips}{%
+  \setlength{\abovedisplayskip}{0pt}%
+  \setlength{\belowdisplayskip}{0pt}%
+  \setlength{\abovedisplayshortskip}{0pt}%
+  \setlength{\belowdisplayshortskip}{0pt}}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Halaman \thepage}
+\rhead{Teorema Fundamental Kalkulus Kedua \\ (\href{https://instagram.com/ahmadzakiyudin_/}{@ahmadzakiyudin\_})}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\setlength{\columnsep}{0.8cm}
+\begin{document}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\newcount\arrowcount
+\newcommand\arrows[1]{
+        \global\arrowcount#1
+        \ifnum\arrowcount>0
+                \begin{matrix}[c]
+                \expandafter\nextarrow
+        \fi
+}
+
+\newcommand\nextarrow[1]{
+        \global\advance\arrowcount-1
+        \ifx\relax#1\relax\else \xrightarrow{#1}\fi
+        \ifnum\arrowcount=0
+                \end{matrix}
+        \else
+                \\
+                \expandafter\nextarrow
+        \fi
+}
+\newpage
+\setstretch{1.3}
+\section*{SOAL LATIHAN 6.7}
+\subsection*{Nomor 3}
+Didefinisikan $F(x)$ dengan $\displaystyle F(x)=\int_1^x (t^3+1)\, dt$
+\begin{enumerate}
+	\item[(a)] Gunakan Teorema Fundamental Kalkulus Kedua untuk mendapatkan $F'(x)$
+	\item[(b)] Periksa hasil bagian (a) dengan mengintegralkan kemudian menurunkan
+\end{enumerate}
+\subsection*{Jawaban Nomor 3}
+\begin{enumerate}
+	\item[(a)] Berdasarkan Teorema Fundamental Kalkulus Kedua, dapat diperoleh 
+	\begin{align*}
+	F'(x) = \dfrac{d}{dx} \int_1^x (t^3+1)\, dt = x^3+1
+	\end{align*}
+	\item[(b)] Perhatikan bahwa 
+	\begin{align*}
+	F(x) = \int_1^x (t^3+1)\, dt &= \dfrac{t^4}{4}+t\bigg|^x_1\\
+	&=\dfrac{x^4}{4}+x-\dfrac{5}{4}
+	\end{align*}
+	Selanjutnya, diperoleh $F'(x)=x^3+1$.
+\end{enumerate}
+\subsection*{Nomor 15}
+Misal $F(x)=\displaystyle\int_0^x \dfrac{\sin t}{t^2+4}\, dt$. Dapatkan $F(0), F'(0), F''(0)$.
+\subsection*{Jawaban Nomor 15}
+Perhatikan bahwa $F(0)=\displaystyle \int_0^0 \dfrac{\sin t}{t^2+4}\, dt$. Ingat sifat integral bahwa $\displaystyle\int_a^a f(x)\, dx=0$, sehingga diperoleh $F(0)=0$.\\
+Selanjutnya, dengan Teorema Fundamental Kalkulus Kedua, didapatkan $F'(x)=\dfrac{\sin t}{t^2+4}$ sehingga $F'(0)=\dfrac{0}{0+4}=0$.\\
+Kemudian, dengan aturan turunan, didapatkan
+\begin{align*}
+F''(x) &= \dfrac{(t^2+4)\cos t-2t\sin t}{(t^2+4)^2}\\
+F''(0) &= \dfrac{(0+4)\cos 0-2(0)\sin 0}{(0+4)^2}\\
+&= \dfrac{4}{4^2} = \dfrac{1}{4}
+\end{align*}
+\subsection*{Nomor 17}
+Misal $F(x)=\displaystyle \int_1^x \dfrac{t+\sin\pi t}{t^2+1}\, dt$. Dapatkan $F(1), F'(1), F''(1)$.
+\subsection*{Jawaban No 17}
+Dengan sifat integral, kita punya $F(1)=\displaystyle \int_1^1 \dfrac{t+\sin\pi t}{t^2+1}\, dt=0$\\
+Selanjutnya, dengan Teorema Fundamental Kalkulus Kedua, didapatkan $F'(x) = \dfrac{x+\sin\pi x}{x^2+1}$ sehingga $F'(1)=\dfrac{1+\sin \pi}{1^2+1}=\dfrac{1}{2}$.\\
+Kemudian dengan aturan turunan, didapatkan 
+\begin{align*}
+F''(x) &= \dfrac{(1+\pi\cos\pi x)(x^2+1)-2x(x+\sin \pi x)}{(x^2+1)^2} \\
+F''(1) &= \dfrac{(1+\pi\cos\pi)(1^2+1)-2(1+\sin\pi)}{(1+1)^2}\\
+&= \dfrac{(1-\pi)(2)-2(1)}{2^2}\\
+&= \dfrac{-2\pi}{4} = -\dfrac{\pi}{2}
+\end{align*}
+\subsection*{Nomor 20}
+Misal $F(x)=\displaystyle \int_0^x \dfrac{2t-3}{4t^2+7}~ dt$ untuk $-\infty <x<+\infty$
+	\begin{enumerate}
+		\item[(a)] Dapatkan interval di mana $F$ naik dan $F$ turun.
+		\item[(b)] Dapatkan interval di mana $F$ cekung ke atas dan $F$ cekung ke bawah.
+	\end{enumerate}
+\subsection*{Jawaban Nomor 20}
+	\begin{enumerate}
+		\item[(a)] Dengan teorema fundamental kalkulus 2, diperoleh 
+		\begin{align*}
+		F'(x) = \dfrac{2x-3}{4x^2+7}
+		\end{align*}
+		Karena penyebutnya $4x^2+7\geq 7$, titik kritisnya hanyalah $x=\dfrac{3}{2}$. Untuk selang $(-\infty,\frac{3}{2}]$, diperoleh $F'(x)\leq 0$ sehingga turun pada selang tersebut. Sedangkan untuk selang $[\frac{3}{2},+\infty)$, diperoleh $F'(x)\geq 0$ sehingga naik pada selang tersebut.
+		\item[(a)] Tinjau 
+		\begin{align*}
+		F''(x) &= \dfrac{2(4x^2+7)-(2x-3)(8x)}{(4x^2+7)^2}\\
+		&= \dfrac{-8x^2+24x+14}{(4x^2+7)^2}\\
+		&= \dfrac{-2(2x-7)(2x+1)}{(4x^2+7)^2}
+		\end{align*}
+		Uji titik untuk $x=-\dfrac{1}{2}$ dan $x=-\dfrac{7}{2}$, diperoleh
+		\begin{center}
+		\begin{tikzpicture}
+	\draw[<-] (0,0) -- (2-0.07,0);
+	\draw (2+0.07,0) -- (4-0.07,0);
+	\draw[->] (4+0.07,0) -- (6,0);
+	\draw (2,0.07) -- (2,0.7);
+	\draw (4,0.07) -- (4,0.7);
+	\draw (1,0.3) node {$---$};
+	\draw (3,0.3) node {$+++$};
+	\draw (5,0.3) node {$---$};
+	\draw (2,0) circle(0.07);
+	\draw (4,0) circle(0.07);
+	\draw (2,-0.07) node[below] {$-\dfrac{1}{2}$};
+	\draw (4,-0.07) node[below] {$\dfrac{7}{2}$};
+	\end{tikzpicture}
+		\end{center}
+		Dari sini diperoleh bahwa $F(x)$ cekung ke bawah pada selang $(-\infty,-\frac{1}{2})\cup (\frac{7}{2},+\infty)$ serta cekung ke atas pada selang $(-\frac{1}{2},\frac{7}{2})$
+	\end{enumerate}
+\subsection*{Nomor 22}
+Nyatakan $F(x)=\displaystyle\int_{-2}^x |t|\, dt$ dalam bentuk sepotong-sepotong yang tidak menggunakan integral.
+\subsection*{Jawaban Nomor 22}
+Ingat bahwa $|t|=\begin{cases}t, t\geq 0\\ -t, t<0\end{cases}$, sehingga bentuk dari $F(x)$ menjadi 
+\begin{align*}
+\int_{-2}^x |t|\, dt &= \int_{-2}^0 -t \, dt + \int_0^x t \, dt\\
+&= \dfrac{-t^2}{2}\bigg|^0_{-2} + \dfrac{t^2}{2}\bigg|^x_0\\
+&= \dfrac{-(-2)^2}{2}-0+\dfrac{x^2}{2}-0\\
+&= \dfrac{x^2}{2}-2
+\end{align*}
+\subsection*{Nomor 27}
+Dapatkan $\displaystyle\dfrac{d}{dx}\int_3^{\sin x} \dfrac{1}{1+t^2}\, dt$
+\subsection*{Jawaban Nomor 27}
+Dengan Teorema Fundamental Kalkulus 2 dan aturan rantai, kita punya 
+\begin{align*}
+\dfrac{d}{dx}\int_a^{g(x)} f(t) \, dt &= f(g(x))g'(x)
+\intertext{sehingga}
+\dfrac{d}{dx}\int_3^{\sin x} \dfrac{1}{1+t^2}\, dt &= \dfrac{1}{1+\sin^2 x}\cos x
+\end{align*}
+\subsection*{Nomor 28}
+Buktikan bahwa fungsi 
+\begin{align*}
+F(x)=\int_0^x \dfrac{1}{1+t^2}\, dt+\int_0^{1/x}\dfrac{1}{1+t^2}\, dt
+\end{align*}
+adalah konstan pada interval $(0,+\infty)$.
+\subsection*{Jawaban Nomor 28}
+Dengan Teorema Fundamental Kalkulus Kedua dan aturan rantai kita punya 
+\begin{align*}
+F'(x) &= \dfrac{1}{1+x^2} + \dfrac{1}{1+(1/x)^2}\dfrac{d}{dx}\left[\dfrac{1}{x}\right]\\
+&= \dfrac{1}{1+x^2} +\dfrac{x^2}{x^2+1}\left(-\dfrac{1}{x^2}\right)\\
+&= \dfrac{1}{1+x^2} - \dfrac{1}{1+x^2} = 0
+\end{align*}
+Karena $F'(x)=0$ untuk semua $x>0$, diperoleh bahwa $F(x)$ konstan pada $(0,+\infty)$.
+\subsection*{Nomor 30a}
+Dapatkan $\displaystyle \dfrac{d}{dx}\int_{x^2}^{x^3} \sin^2 t\, dt$
+\subsection*{Jawaban Nomor 30a}
+Misalkan $a$ suatu konstanta dengan $x^2<a<x^3$, perhatikan bahwa 
+\begin{align*}
+\int_{x^2}^{x^3}\sin^2 t\, dt &= \int_{x^2}^a \sin^2 t\, dt + \int_a^{x^3}\sin^2 t\, dt\\
+&= -\int_{a}^{x^2} \sin^2 t\, dt + \int_a^{x^3}\sin^2 t\, dt
+\end{align*}
+sehingga dengan Teorema Fundamental Kalkulus Kedua dan aturan rantai, kita dapatkan 
+\begin{align*}
+\dfrac{d}{dx}\int_{x^2}^{x^3} \sin^2 t\, dt &= \dfrac{d}{dx}\left[-\int_{a}^{x^2} \sin^2 t\, dt + \int_a^{x^3}\sin^2 t\, dt\right]\\
+&= \dfrac{d}{dx}\int_{a}^{x^2} (-\sin^2 t)\, dt +\dfrac{d}{dx} \int_a^{x^3}\sin^2 t\, dt\\
+&= -2x\sin^2(x^2) + 3x^2\sin^2(x^3)
+\end{align*}
+\end{document}

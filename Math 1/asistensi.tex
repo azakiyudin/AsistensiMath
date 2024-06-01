@@ -1,0 +1,222 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref,ragged2e,amsmath,multicol,gensymb,setspace,
+fancyhdr,amsfonts,tikz,pgfplots,nccmath,enumerate,verbatim}
+\usepackage[a4paper, width=216mm, height=297mm, margin=3cm]{geometry}
+\usepgfplotslibrary{polar,fillbetween}
+\usepgflibrary{shapes.geometric}
+\usetikzlibrary{calc,patterns,arrows}
+\newcommand\mylog[1]{\mathop{{}^{#1}\mathrm{log}}}
+\pgfplotsset{compat=1.15}
+\pgfplotsset{my style/.append style={axis x line=middle, axis y line=
+middle, xlabel={$x$}, ylabel={$y$}, axis equal }}
+\usepackage{etoolbox}
+\newcommand{\zerodisplayskips}{%
+  \setlength{\abovedisplayskip}{0pt}%
+  \setlength{\belowdisplayskip}{0pt}%
+  \setlength{\abovedisplayshortskip}{0pt}%
+  \setlength{\belowdisplayshortskip}{0pt}}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Halaman \thepage}
+\rhead{(\href{https://twitter.com/ahmadzakiyudin_/}{@ahmadzakiyudin\_})}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\setlength{\columnsep}{0.8cm}
+\begin{document}
+ \begin{titlepage}
+    \vspace*{\fill}
+    \begin{center}
+      \Huge {PERTEMUAN 5 \\ASISTENSI MATEMATIKA I\\BAB 7.3 — 7.7}\\[0.4 cm]
+      \huge {Ahmad Hisbu Zakiyudin}
+    \end{center}
+    \vspace*{\fill}
+  \end{titlepage}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\newcount\arrowcount
+\newcommand\arrows[1]{
+        \global\arrowcount#1
+        \ifnum\arrowcount>0
+                \begin{matrix}[c]
+                \expandafter\nextarrow
+        \fi
+}
+
+\newcommand\nextarrow[1]{
+        \global\advance\arrowcount-1
+        \ifx\relax#1\relax\else \xrightarrow{#1}\fi
+        \ifnum\arrowcount=0
+                \end{matrix}
+        \else
+                \\
+                \expandafter\nextarrow
+        \fi
+}
+\newpage
+\setstretch{1.3}
+\begin{enumerate}
+	\item Diberikan turunan fungsi kontinu, yaitu $f'(x)=\dfrac{9-4x^2}{\sqrt[3]{x+1}}$, tentukan semua titik kritis dan tentukan apakah maksimum relatif, minimum relatif, atau bukan keduanya. 
+	\\[0.1 cm] \textbf{Solusi:}
+	\\ Perhatikan bahwa $f'(x)=\dfrac{(3-2x)(3+2x)}{\sqrt[3]{x+1}}$, titik kritis adalah pembuat nol pembilang dan penyebut, yaitu $x=-\dfrac{3}{2};x=-1;x=\dfrac{3}{2}$.\\ Apabila dicek, tanda $f'(x)$ berubah dari positif ke negatif di $x=-\dfrac{3}{2}$, dari negatif ke positif di $x=-1$, dan dari positif ke negatif di $x=\dfrac{3}{2}$. Dengan demikian, terdapat maksimum relatif pada $x=-\dfrac{3}{2}$ dan $x=\dfrac{3}{2}$ serta minimum relatif pada $x=-1$. 
+	\item Tentukan nilai $k$ sedemikian hingga $x^2+\dfrac{k}{x}$ memiliki ekstrim relatif pada $x=3$.
+\\	\textbf{Solusi:}\\
+	Tinjau $f'(x)=2x-\dfrac{k}{x^2}$, karena ekstrim relatif di $x=3$, maka $f'(x)=0$ di titik tersebut, sehingga
+	$ 2(3)-\dfrac{k}{9} = 0$. Jadi $k=54$
+	\item Buatlah sketsa grafik fungsi rasional $f(x)=\dfrac{x^2-2x-3}{x+2}$, tunjukkan semua asimtot tegak, datar, dan miring.
+	\\[0.1 cm] \textbf{Solusi:}
+	\begin{enumerate}
+		\item \textbf{Simetri} 
+		\\ Pergantian $x$ dengan $-x$ mengubah persamaan, sehingga tidak simetri dengan sumbu $y$
+		\item \textbf{Perpotongan dengan sumbu $x$}. \\ Saat $y=0$, diperoleh perpotongan dengan sumbu $x$ di $x=-1$ dan $x=3$
+		\item \textbf{Perpotongan dengan sumbu $y$}. \\Saat $x=0$, diperoleh perpotongan dengan sumbu $y$ di $y=-\dfrac{3}{2}$
+		\item \textbf{Asimtot tegak}. \\Saat penyebut bernilai $0$, yaitu $x=-2$
+		\item \textbf{Asimtot datar} \\Tinjau bahwa derajat pembilang lebih dari derajat penyebut sehingga $f(x)$ tidak memiliki asimtot datar, tetapi memiliki asimtot miring
+		\item \textbf{Asimtot Miring} \\Tinjau bahwa 
+		\begin{align*}
+		\dfrac{x^2-2x-3}{x+2} &= \dfrac{x^2-2x+4x-4x-3-5+5}{x+2}\\
+		&=\dfrac{x^2+2x-4x-8+5}{x+2}\\
+		&=\dfrac{(x+2)(x-4)+5}{x+2}\\
+		&= x-4 + \dfrac{5}{x+2}
+		\end{align*}
+		sehingga asimtot miringnya adalah garis $y=x-4$
+		\item \textbf{Turunan} 
+		\begin{align*}
+		f'(x) &= \dfrac{dy}{dx} = \dfrac{(2x-2)(x+2)-(1)(x^2-2x-3)}{(x+2)^2} = \dfrac{x^2+4x-1}{(x+2)^2} \\
+		f''(x) &= \dfrac{d^2y}{dx^2} = \dfrac{(2x+4)(x+2)^2-2(x+2)(x^2+4x-1}{(x+2)^4}= \dfrac{10}{(x+2)^3}
+		\end{align*}
+		\item \textbf{Selang naik dan turun} \\Titik stasioner diperoleh $x=-2-\sqrt{5}$ dan $x=-2+\sqrt{5}$, serta titik kritis lain yaitu $x=-2$\\
+		Tanda $f'(x)$ berubah dari positif ke negatif di $x=-2-\sqrt{5}$, sehingga maksimum relatif pada $x=-2-\sqrt{5}$. Kemudian, tanda $f'(x)$ berubah dari negatif ke positif di $x=-2+\sqrt{5}$, sehingga minimum relatif pada $x=-2+\sqrt{5}$. 
+		\item \textbf{Kecekungan} \\Karena $f''(x)>0$ untuk $x>-2$, maka grafik cekung ke atas, serta $f''(x)<0$ untuk $x<-2$, maka grafik cekung ke bawah.
+	\end{enumerate}
+	Dengan demikian grafiknya adalah 
+	\begin{center}
+	\begin{tikzpicture}
+\begin{axis}[
+x= 0.32 cm, y=0.32 cm,
+ axis lines=middle,
+  xmin=-19,xmax=17,ymin=-22,ymax=14,
+  xtick distance=5,
+  ytick distance=5,
+  xlabel=$x$,
+  ylabel=$y$]
+\addplot [domain=-15.7:-2.35, name path=B,samples=250, blue] {(x^2-2*x-3)/(x+2)};
+\addplot+[no marks] [domain=-1.74:15, name path=B,samples=250,blue] {(x^2-2*x-3)/(x+2)};
+\addplot [domain=-15.7:15, samples=100,dashed]{x-4};
+\addplot [dashed] coordinates {(-2,-21) (-2,13.5)};
+\end{axis}
+\end{tikzpicture}
+	\end{center}\newpage
+	\item Tentukan nilai maksimum dan minimum fungsi $f(x)=\cos(\sin x)$ pada $[0,\pi]$
+	\\[0.1 cm] \textbf{Solusi:}\\
+	Tinjau bahwa $f'(x)=-\sin(\sin x)\cos x$, maka titik stasionernya adalah ketika $f'(x)=0$, yaitu di $\sin(\sin x)=0$ atau $\cos x=0$ sehingga $x=0$ atau $x=\dfrac{\pi}{2}$. Cek nilai $f(x)$ pada titik stasioner dan batas domainnya
+	\begin{align*}
+	f(0) &=\cos(\sin 0) = 1\\
+	f\left(\dfrac{\pi}{2}\right) &= \cos\left(\sin \dfrac{\pi}{2}\right) = \cos(1) \approx 0.5403\\
+	f(\pi) &= \cos(\sin \pi) = 1
+	\end{align*}
+	Karena $\cos(1)<1$, maka minimumnya adalah pada titik $\left(\dfrac{\pi}{2},\cos(1)\right)$, serta maksimum pada $(0,1)$ dan $(\pi,1)$
+	\item Berapa kemiringan terkecil yang mungkin untuk garis singgung kurva $y=x^3-3x^2+5x$.
+	\\[0.1 cm] \textbf{Solusi:}\\
+	Tinjau persamaan kemiringan garis singgungnya, yaitu 
+	$$ m=\dfrac{dy}{dx} = 3x^2-6x+5$$
+	Selanjutnya, untuk mencari kemiringan terkecil, kita perlu mencari nilai minimum dari $m$. Titik stasioner dari $m$ ketika $m'=0$ yaitu $6x-6=0$ atau $x=1$. Perhatikan bahwa tanda $m'$ di $x=1$ berawal dari negatif ke positif, sehingga jelas titik stasioner $x=1$ merupakan titik yang membuat $m$ minimum. Jadi kemiringan terkecil garis singgungnya adalah $m=3(1)^2-6(1)+5=2$.  
+	\item Buktikan bahwa jika $ax^2+bx+c=0$ mempunyai dua akar real yang berlainan, maka titik tengah antara dua akar ini adalah titik stasioner untuk $f(x)=ax^2+bx+c$.
+	\\[0.1 cm] \textbf{Solusi:}\\
+	Tinjau bahwa titik stasioner $f(x)$ adalah $f'(x)=2ax+b=0$ yaitu pada $x=-\dfrac{b}{2a}$. Berdasarkan Teorema Vieta, kita tahu jumlah akar persamaan $ax^2+bx+c=0$ adalah $\dfrac{-b}{a}$. Misalkan kedua akar yang berbeda tersebut adalah $x_1+x_2$ sehingga titik tengahnya adalah $\dfrac{x_1+x_2}{2}=\dfrac{-\frac{b}{a}}{2}=-\dfrac{b}{2a}$. Dengan demikian terbukti.
+	\item Tentukan ukuran tabung dengan isi terbesar yang dapat dibuat dalam bola berjari-jari R.
+	\\[0.1 cm] \textbf{Solusi:}\\
+	Sketsa terlebih dahulu tabung di dalam bola. \\
+	Misalkan jari-jari tabung adalah $a$, maka untuk mencari tingginya, kita dapat membuat proyeksi 2 dimensi untuk tabung dalam bola. Proyeksinya akan berbentuk seperti persegi panjang dalam lingkaran. Tanpa mengurangi keumuman, misalkan pusat lingkaran adalah $(0,0)$ dan jari-jarinya sama seperti jari-jari bola, yaitu $R$ sehingga dapat diperoleh persamaan lingkaran $x^2+y^2=R^2$. Selanjutnya, karena jari-jari tabung adalah $a$, maka $a^2+y^2=R^2$. Misalkan pula titik $(a,b)$ melewati lingkaran, sehingga tinggi tabungnya adalah $2b$. Jadi kita punya $a^2+b^2=R^2$ atau $b=\sqrt{R^2-a^2}$. Oleh karena itu diperoleh volume tabung
+	$$ V = \pi a^2(2b) = 2\pi a^2\sqrt{R^2-a^2} = 2\pi\sqrt{a^4R^2-a^6} $$
+	 Volume terbesar atau maksimum ketika $\dfrac{dV}{da}=0$, yaitu
+	 \begin{align*}
+	 \dfrac{dV}{da} &= \dfrac{2\pi}{2\sqrt{a^4R^2-a^6}}\times 4a^3R^2-6a^5\\
+	 0 &= \dfrac{\pi a^3(4R^2-6a^2)}{\sqrt{a^4R^2-a^6}}\\
+	 0 &= \dfrac{\pi a^3(2R-a\sqrt{6})(2R+a\sqrt{6})}{\sqrt{a^4R^2-a^6}}
+	 \end{align*}
+	 Karena $a>0$, diperoleh $a=\dfrac{2R}{\sqrt{6}}=\dfrac{R}{3}\sqrt{6}$ sehingga 
+	 $$ V=2\pi \sqrt{\left(\dfrac{R\sqrt{6}}{3}\right)^4R^2-\left(\dfrac{R\sqrt{6}}{3}\right)^6} = \dfrac{4\pi R^3\sqrt{3}}{9} $$
+	 \item Tabung tertutup mempunyai isi $V$ kubik satuan volume. Tunjukkan bahwa luas permukaan minimum dicapai ketika tinggi tabung sama dengan diameter dasar.
+	 \\[0.1 cm] \textbf{Solusi:} \\
+	 Perhatikan bahwa rumus volume tabung dengan tinggi $t$ dan jari-jari $r$ adalah $V=\pi r^2t$ sehingga $t=\dfrac{V}{\pi r^2}$. Selanjutnya, tinjau bahwa luas permukaan tabung tertutup adalah $L=2(\pi r^2) + 2\pi rt=2\pi r^2+\dfrac{2V}{r}$. Luas maksimum ketika $\dfrac{dL}{dr}=0$, yaitu
+	 \begin{align*}
+	 \dfrac{dL}{dr} &= 4\pi r -\dfrac{2V}{r^2} = 0\\
+	 V &= 2\pi r^3\\
+	 \pi r^2t &= 2\pi r^3\\
+	 t &= 2r = d
+	 \end{align*}
+	 Terbukti bahwa luas permukaan minimum dicapai ketika tinggi tabung sama dengan diameter dasar.
+	 \item Trapesium dilukiskan dalam setengah lingkaran berjari-jari 2 sehingga satu sisi berada pada diameter. Tentukan luas maksimum trapesium.
+	 \\[0.1 cm] \textbf{Solusi:}\\
+	 Tanpa mengurangi keumuman, misalkan lingkaran dengan jari-jari 2 tersebut berpusat di $(0,0)$ sehingga persamaannya adalah $x^2+y^2=4$.  Kita tahu salah satu sisi yang sejajar pada trapesium tersebut pada diameternya sehingga panjangnya 4, dan misalkan panjang sisi sejajar yang lain adalah $2a$, serta tingginya adalah $b$, sehingga $(a,b)$ merupakan titik pada lingkaran tersebut. Jadi diperoleh persamaan luas trapesiumnya adalah $L=\dfrac{2a+4}{2}b=(a+2)b$. Karena $(a,b)$ pada lingkaran, maka $b=\sqrt{4-a^2}$ sehingga $L=(a+2)\sqrt{4-a^2}$. Luasnya akan maksimum ketika $\dfrac{dL}{da} = 0$ yaitu
+	 \begin{align*}
+	 \dfrac{dL}{da} = \sqrt{4-a^2} + \dfrac{-2a}{2\sqrt{4-a^2}}(a+2) &=0 \\
+	 \dfrac{4-a^2-a^2-2}{\sqrt{4-a^2}} &= 0\\
+	 2(1-a)(1+a) &= 0
+	 \end{align*}
+	 Karena $a>0$, maka $a=1$, sehingga luas maksimummnya adalah $L=(1+2)\sqrt{4-1^2}=3\sqrt{3}$
+	 \item Tentukan semua titik pada kurva $x^2-y^2=1$ terdekat ke $(0,2)$
+	 \\[0.1 cm] \textbf{Solusi:}\\
+	 Tinjau persamaan jarak titik $x$ ke $0$ dan titik $y$ ke $2$ yaitu $P=\sqrt{x^2+(y-2)^2}$. Diketahui pula bahwa $x^2-y^2=1$ sehingga $P=\sqrt{1+y^2+(y-2)^2}$. Untuk mencari jarak terdekat, kita gunakan turunan, dan supaya mudah dapat dicari turunan dari $P^2=2y^2-4y+5$ terhadap $y$ yang bernilai 0, sehingga 
+	 \begin{align*}
+	 \dfrac{dP^2}{dy} &= 4y-4 = 0 \\
+	 y &= 1
+	 \end{align*}
+	 Karena $y=1$, maka $x=\pm \sqrt{2}$. Dengan demikian, titik pada kurva $x^2-y^2=1$ dengan jarak terdekat ke $(0,2)$ adalah titik $(-\sqrt{2},1)$ dan $(\sqrt{2},1)$ dengan jarak $P=\sqrt{2-4+5}=\sqrt{3}$.
+	 \item Tunjukkan bahwa hipotesa Teorema Rolle terpenuhi pada selang yang diberikan dan tentukan semua nilai $c$ yang memenuhi dari $f(x)=x^2-6x+8; [2,4]$ \\
+	 \textbf{Solusi:} \\
+	 Karena $f(x)$ polinomial, maka $f(x)$ terdiferensial di mana-mana. Mudah dicek bahwa $f(4)=f(2)=0$. Berdasarkan hipotesa Teorema Rolle, terdapat sedikitnya satu titik $c$ dalam $(a,b)$ yang memenuhi $f'(c)=0$. Tinjau bahwa $f'(c)=2c-6=0$ sehingga $c=3 \in (2,4)$. Jadi hipotesa Teorema Rolle terpenuhi.
+	 \item Diberikan $f(x)=\tan x$
+	 \begin{enumerate}
+	 	\item Tunjukkan bahwa tidak ada titik $c$ dalam $(0,\pi)$ sedemikian hingga $f'(c)=0$, meskipun $f(0)=f(\pi)=0$
+	 	\item Terangkan mengapa hasil pada bagian $(a)$ tidak melanggar Teorema Rolle
+	 \end{enumerate}
+	 \textbf{Solusi:}
+	 \begin{enumerate}
+	 	\item Tinjau bahwa $f'(c)=\sec^2 c=\dfrac{1}{\sin^2 c}$, jelas bahwa tidak ada $c$ yang memenuhi.
+	 	\item Hasil bagian $(a)$ tidak melanggar Teorema Rolle karena $f(x)$ tidak terdiferensial pada setiap titik di $(0,\pi)$ yaitu pada $x=\dfrac{\pi}{2}$, serta tidak kontinu pada titik tersebut.
+	 \end{enumerate}
+	 \newpage
+	 \item Gunakan Teorema Nilai Rata-rata untuk membuktikan bahwa $|\sin x-\sin y|\leq |x-y|$
+	 \\[0.1 cm] \textbf{Solusi:}\\
+	 Misalkan $f(p)=\sin p$, maka $f(p)$ terdiferensial pada $(x,y)$ dan kontinu pula pada $[x,y]$ sehingga jika $c$ pada $(x,y)$ dapat kita terapkan Teorema Nilai Rata-rata
+	 \begin{align*}
+	 f'(c) = \cos c &= \dfrac{f(y)-f(x)}{y-x} = \dfrac{\sin x-\sin y}{x-y}
+	 \end{align*}
+	 Tinjau bahwa $-1\leq \cos c\leq 1$, dengan kata lain $|\cos c|\leq 1$, maka kita peroleh 
+	 \begin{align*}
+	 |\cos c|= \left|\dfrac{\sin x-\sin y}{x-y}\right| &\leq 1 \\
+	 |\sin x-\sin y| &\leq |x-y|
+	 \end{align*}
+	 \item Jika $0<x<y$, maka $\sqrt{xy}<\dfrac{1}{2}(x+y)$
+	 \\[0.1 cm] \textbf{Solusi:}\\
+	 Misalkan $f(p)=\sqrt{p}$, maka $f(p)$ terdiferensial pada $(x,y)$ dan kontinu pula pada $[x,y]$ sehingga jika $c$ pada $(x,y)$ dapat kita terapkan Teorema Nilai Rata-rata
+	 \begin{align*}
+	 f'(c) = \dfrac{1}{2\sqrt{c}} = \dfrac{f(y)-f(x)}{y-x} &= \dfrac{\sqrt{y}-\sqrt{x}}{y-x}
+	 \end{align*}
+	 Tinjau bahwa $0<x<c<y$ sehingga $\dfrac{1}{2\sqrt{x}}>\dfrac{1}{2\sqrt{c}}$ dan diperoleh
+	 \begin{align*}
+	 \dfrac{1}{2\sqrt{x}} &> \dfrac{1}{2\sqrt{c}} = \dfrac{\sqrt{y}-\sqrt{x}}{y-x}\\
+	 y-x &> 2\sqrt{xy}-2x \\
+	 y+x &> 2\sqrt{xy} \\
+	 \sqrt{xy} &< \dfrac{1}{2}(x+y)
+	 \end{align*}
+	 \item Jika $f$ dan $g$ fungsi yang mempunyai $f'(x)=g(x)$ dan $g'(x)=f(x)$ untuk semua $x$, maka $f^2(x)-g^2(x)$ konstan
+	 \\[0.1 cm] \textbf{Solusi:}\\
+	 Misalkan $F(x)=f^2(x)-g^2(x)$ sehingga $F(x)$ dapat diturunankan di $(a,b)$ dan kontinu pada $[a,b]$. Kemudian diperoleh $F'(x)=2f(x)f'(x)-2g(x)g'(x)=2f(x)g(x)-2g(x)f(x)=0$. Berdasarkan Teorema Nilai Rata-rata, maka kita punya
+	 \begin{align*}
+	 F'(c) = \dfrac{F(b)-F(a)}{b-a} &= 0 \\
+	 F(b)=F(a)
+	 \end{align*}
+	 Karena $F(b)=F(a)$ untuk setiap $a,b$ maka $F(x)$ konstan.
+\end{enumerate}
+\end{document}

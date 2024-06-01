@@ -1,0 +1,296 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref,ragged2e,amsmath,multicol,gensymb,setspace,
+fancyhdr,amsfonts,tikz,pgfplots,nccmath,enumerate,verbatim}
+\usepackage[a4paper, width=216mm, height=297mm, margin=3cm]{geometry}
+\usepgfplotslibrary{polar,fillbetween}
+\usepgflibrary{shapes.geometric}
+\usetikzlibrary{calc,patterns,arrows}
+\newcommand\mylog[1]{\mathop{{}^{#1}\mathrm{log}}}
+\pgfplotsset{compat=1.15}
+\pgfplotsset{my style/.append style={axis x line=middle, axis y line=
+middle, xlabel={$x$}, ylabel={$y$}, axis equal }}
+\usepackage{etoolbox}
+\newcommand{\zerodisplayskips}{%
+  \setlength{\abovedisplayskip}{0pt}%
+  \setlength{\belowdisplayskip}{0pt}%
+  \setlength{\abovedisplayshortskip}{0pt}%
+  \setlength{\belowdisplayshortskip}{0pt}}
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Halaman \thepage}
+\rhead{Pembahasan Soal EAS 2020 \\ (\href{https://twitter.com/ahmadzakiyudin_/}{@ahmadzakiyudin\_})}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=blue,      
+    urlcolor=blue,
+}
+\setlength{\columnsep}{0.8cm}
+\begin{document}
+ \begin{titlepage}
+    \vspace*{\fill}
+    \begin{center}
+      \Huge {PERTEMUAN 6 \\ ASISTENSI MATEMATIKA I\\PEMBAHASAN SOAL EAS 2020}\\[0.4 cm]
+      \huge {Ahmad Hisbu Zakiyudin}
+    \end{center}
+    \vspace*{\fill}
+  \end{titlepage}
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+  \hskip -\arraycolsep
+  \let\@ifnextchar\new@ifnextchar
+  \array{#1}}
+\makeatother
+\newcount\arrowcount
+\newcommand\arrows[1]{
+        \global\arrowcount#1
+        \ifnum\arrowcount>0
+                \begin{matrix}[c]
+                \expandafter\nextarrow
+        \fi
+}
+
+\newcommand\nextarrow[1]{
+        \global\advance\arrowcount-1
+        \ifx\relax#1\relax\else \xrightarrow{#1}\fi
+        \ifnum\arrowcount=0
+                \end{matrix}
+        \else
+                \\
+                \expandafter\nextarrow
+        \fi
+}
+\newpage
+\setstretch{1.3}
+\section*{Soal Hari Selasa, 12 Januari 2021 Pukul 13.00-14.15 WIB}
+\begin{enumerate}
+	\item Dapatkan rumusan untuk $\dfrac{d^ny}{dx^2}$ dari $y=\sin^2x$
+	\\[0.2 cm] \textbf{Solusi:}\\
+	Tinjau $\dfrac{d^ny}{dx^2}$ untuk $n=1,2,3,...$
+	\begin{align*}
+	\dfrac{dy}{dx} &= \sin 2x = - \cos \left(2x+\dfrac{\pi}{2}\right)\\
+	\dfrac{d^2y}{dx^2} &= 2\cos 2x = -2\cos(2x+\pi)\\
+	\dfrac{d^3y}{dx^3} &= -4\sin 2x = -4\cos\left(2x+\dfrac{3\pi}{2}\right)  \\
+	\dfrac{d^4y}{dx^4} &= -8\cos 2x = -8\cos(2x+2\pi) \\
+	\dfrac{d^5y}{dx^5} &= 16\sin 2x = -16\cos\left(2x+\dfrac{5\pi}{2}\right)
+	\end{align*}
+	sehingga polanya berulang tiap 4 kali, serta dapat  diperoleh $\dfrac{d^ny}{dx^n} = -2^{n-1}\cos\left(2x+\dfrac{n\pi}{2}\right)$
+	\item Diketahui $y(x)=16x^2-x^4$
+	\begin{enumerate}
+		\item Dengan uji turunan pertama tentukan titik kritisnya dan jenis maksimum-minimumnya
+		\item Dengan uji turunan kedua tentukan titik beloknya
+		\item Sketsalah grafik fungsi tersebut
+	\end{enumerate}
+	\textbf{Solusi:}
+	\begin{enumerate}
+		\item Titik kritis yaitu $x$ ketika $f'(x)=0$
+		\begin{align*}
+		f'(x) = 32x-4x^3 &= 0\\
+		4x(8-x^2) &= 0\\
+		4x(\sqrt{8}-x)(\sqrt{8}+x) &= 0
+		\end{align*}
+		Diperoleh titik kritis yang merupakan titik stasioner pada $x=-\sqrt{8},x=0,x=\sqrt{8}$. Selanjutnya, tinjau bahwa $f'(x)\leq 0$ untuk selang $[-\sqrt{8},0] \cup [\sqrt{8},+\infty)$ sehingga $f(x)$ turun pada selang tersebut, serta $f'(x)\geq 0$ untuk selang $(-\infty,-\sqrt{8}]\cup[0,\sqrt{8}]$ sehingga $f(x)$ naik pada selang tersebut. Oleh karena itu $f(-\sqrt{8})=f(\sqrt{8})=64$ merupakan maksimum global dan $f(0)=0$ merupakan minimum lokal
+		\item Titik belok yaitu titik $x$ ketika $f''(x)=0$
+		\begin{align*}
+		f''(x) = 32-12x^2 &=0\\
+		4(8-3x^2) &= 0\\
+		(\sqrt{8}-x\sqrt{3})(\sqrt{8}+x\sqrt{3}) &= 0
+\end{align*}		
+		Diperoleh titik belok adalah $x=-\dfrac{\sqrt{8}}{\sqrt{3}}$ dan $x=\dfrac{\sqrt{8}}{\sqrt{3}}$ 
+		\item Sebelum sketsa grafik fungsinya, akan ditentukan kecekungan fungsi terlebih dahulu. Tinjau bahwa $f''(x)<0$ untuk selang $\left(-\infty,\frac{-\sqrt{8}}{\sqrt{3}}\right) \bigcup  \left(\frac{\sqrt{8}}{\sqrt{3}},+\infty\right)$ sehingga $f(x)$ cekung ke bawah pada selang tersebut, serta $f''(x)>0$ untuk selang $\left(-\frac{\sqrt{8}}{\sqrt{3}},\frac{\sqrt{8}}{\sqrt{3}}\right)$ sehingga $f(x)$ cekung ke atas pada selang tersebut.\\
+		Selanjutnya dapat ditentukan perpotongan $f(x)$ dengan sumbu $x$ yaitu $f(x)=0$
+		\begin{align*}
+		f(x) = 16x^2-x^4 &=0\\
+		x^2(16-x^2) &= 0\\
+		x^2(4-x)(4+x) &= 0
+		\end{align*}
+		sehingga berpotongan dengan sumbu $x$ pada titik $x=-4,x=0,$ dan $x=4$.
+		Dengan demikian, sketsa grafiknya adalah 
+		\begin{center}
+	\begin{tikzpicture}
+\begin{axis}[
+x = 1 cm, y=0.2 cm,
+ axis lines=middle,
+  xmin=-6,xmax=6,ymin=-15,ymax=69,
+  xtick distance=4,
+  extra x ticks={-sqrt(8),-sqrt(8)/sqrt(3),sqrt(8)/sqrt(3),sqrt(8)},
+  extra x tick labels={$-\sqrt{8}$,$-\frac{\sqrt{8}}{\sqrt{3}}$,$\frac{\sqrt{8}}{\sqrt{3}}$,$\sqrt{8}$},
+  extra y ticks={64},
+  ytick distance=10,
+  xlabel=$x$,
+  ylabel=$y$]
+\addplot [domain=-5:5, name path=B,samples=5000] {(16*x^2-x^4)};
+\addplot [dashed,gray] coordinates {(-2.83,0) (-2.83,64)};
+\addplot [dashed,gray] coordinates {(-2.83,64) (2.83,64)};
+\addplot [dashed,gray] coordinates {(2.83,0) (2.83,64)};
+\addplot [dashed,gray] coordinates {(-1.63,0) (-1.63,35.5)};
+\addplot [dashed,gray] coordinates {(1.63,0) (1.63,35.5)};
+\end{axis}
+\end{tikzpicture}
+	\end{center}
+	\end{enumerate}
+	\newpage
+	\item \begin{enumerate}
+		\item Tuliskan Teorema Nilai Rata-rata
+		\item Diberikan $f(x)=x^{\frac{2}{3}}$ pada selang $[-1,8]$\\
+		Gunakan Teorema Nilai Rata-rata untuk menentukan nilai $c$ sehingga $f'(c)=\dfrac{f(8)-f(-1)}{8-(-1)}$
+	\end{enumerate}
+	\textbf{Solusi:}
+	\begin{enumerate}
+		\item Jika $f(x)$ dapat diturunkan pada $(a,b)$ dan kontinu pada $[a,b]$, maka terdapat sedikitnya satu titik $c$ dalam $(a,b)$ sehingga $$ f'(c) = \dfrac{f(b)-f(a)}{b-a} $$
+		\item Tinjau bahwa $f'(x)=\dfrac{2}{2\sqrt[3]{x}}$ yang jelas tidak dapat diturunkan pada setiap titik di $(-1,8)$ yaitu pada $x=0$, sehingga teorema tersebut sebenarnya tidak berlaku. Akan tetapi, akan kita coba cari apakah terdapat $c$ yang memenuhi
+		\begin{align*}
+		f'(c) = \dfrac{2}{3\sqrt[3]{c}} &= \dfrac{8^{\frac{2}{3}}-(-1)^{\frac{2}{3}}}{8-(-1)} \\
+		\dfrac{2}{3\sqrt[3]{c}} &= \dfrac{3}{9} \\
+		c &= 8
+		\end{align*}
+		Jadi terdapat nilai $c$ yang memenuhi persamaan tersebut, tetapi $c$ tidak pada $(-1,8)$, dan $f(x)$ tidak dapat diturunkan pada $x=0$. Dengan demikian, hal ini tidak menyalahi Teorema Nilai Rata-rata.
+	\end{enumerate}
+	\item Tentukan ukuran tabung dengan isi terbesar yang dapat dibuat dalam bola berjari-jari R.
+	\\[0.1 cm] \textbf{Solusi:}\\
+	Sketsa terlebih dahulu tabung di dalam bola. \\
+	Misalkan jari-jari tabung adalah $a$, maka untuk mencari tingginya, kita dapat membuat proyeksi 2 dimensi untuk tabung dalam bola. Proyeksinya akan berbentuk seperti persegi panjang dalam lingkaran. Tanpa mengurangi keumuman, misalkan pusat lingkaran adalah $(0,0)$ dan jari-jarinya sama seperti jari-jari bola, yaitu $R$ sehingga dapat diperoleh persamaan lingkaran $x^2+y^2=R^2$. Selanjutnya, karena jari-jari tabung adalah $a$, maka $a^2+y^2=R^2$. Misalkan pula titik $(a,b)$ melewati lingkaran, sehingga tinggi tabungnya adalah $2b$. Jadi kita punya $a^2+b^2=R^2$ atau $a^2=R^2-b^2$. Oleh karena itu diperoleh volume tabung
+	$$ V = \pi a^2(2b) = 2\pi (R^2-b^2)b = 2\pi(R^2b-b^3) $$
+	 Volume terbesar atau maksimum ketika $\dfrac{dV}{db}=0$, yaitu
+	 \begin{align*}
+	 \dfrac{dV}{db} = 2\pi (R^2-3b^2) &= 0 \\
+	 (R-b\sqrt{3})(R+b\sqrt{3}) &=0
+	 \end{align*}
+	 Karena $b>0$, diperoleh $b=\dfrac{R}{3}\sqrt{3}$ sehingga $a^2=\dfrac{2R^2}{3}$. Dengan kata lain ukuran jari-jari tabung yaitu $a=\dfrac{R}{3}\sqrt{6}$ dan tingginya adalah $2b=\dfrac{2R}{3}\sqrt{3}$, serta volumenya adalah $V=2\pi \left(R^2\dfrac{R}{3}\sqrt{3}-\left(\dfrac{R}{3}\sqrt{3}\right)^3\right) = \dfrac{4\pi R^3\sqrt{3}}{9}$
+	 \item Selesaikan integral berikut:
+	 \begin{enumerate}
+	 	\item $\displaystyle \int \sin 2x\sqrt{2-3\sin^2 x} \, dx$
+	 	\item $\displaystyle \int \left(5x^2-15x+\dfrac{45}{4}\right)^{\frac{1}{2}} \, dx$
+	 \end{enumerate}
+	 \textbf{Solusi:}
+	 \begin{enumerate}
+	 	\item Misalkan $u=2-3\sin^2 x$ sehingga $du = -3\sin 2x \, dx$ dan diperoleh 
+	 	\begin{align*}
+	 	\int \sin 2x\sqrt{2-3\sin^2x} \, dx &= \int -\dfrac{1}{3}\sqrt{u} \, du \\
+	 	&=  -\dfrac{1}{3} \int u^{\frac{1}{2}} \, du \\
+	 	&= -\dfrac{1}{3}u^{\frac{3}{2}}\frac{2}{3} +C \\
+		&= -\dfrac{2}{9}(2-3\sin^2x)^{\frac{3}{2}} + C
+	 	\end{align*}
+	 	\item Perhatikan bahwa $5x^2-15x+\dfrac{45}{4}=5\left(x-\dfrac{3}{2}\right)^2$, sehingga
+	 	\begin{align*}
+	 	\int \left(5x^2-15x+\dfrac{45}{4}\right)^{\frac{1}{2}} \, dx &= \int \left(5\left(x-\dfrac{3}{2}\right)^2\right)^{\frac{1}{2}} \, dx \\
+	 	&= \sqrt{5}\int \left(x-\dfrac{3}{2}\right) \, dx \\
+	 	&= \sqrt{5}\left(\dfrac{x^2}{2}-\dfrac{3}{2}x\right) +C  
+	 	\end{align*}
+	 \end{enumerate}
+\end{enumerate}
+\newpage
+\section*{Soal Hari Selasa 12 Januari 2021 Pukul 7.00-8.15 WIB}
+\begin{enumerate}
+	\item Diberikan $y=f(x)=\dfrac{x+3}{x+2}$
+	\begin{enumerate}
+		\item Dapatkan $y'=f'(x)$
+		\item Jika $(x_0,y_0)$ titik pada kurva $f$ dimana garis singgung dari $f$ tegak lurus dengan garis $y=x$, maka tentukan titik $(x_0,y_0)$ dan persamaan garis singgung di titik tersebut.
+	\end{enumerate}
+	\textbf{Solusi:}
+	\begin{enumerate}
+		\item Dapat dengan mudah diperoleh $y'=f'(x)=\dfrac{(x+2)(1)-(x+3)(1)}{(x+2)^2} = -\dfrac{1}{(x+2)^2}$
+		\item Ingat bahwa gradien garis singgung kurva pada suatu titik pada kurva adalah nilai turunan pertama pada titik tersebut. Tinjau bahwa gradien garis singgung yang dimaksud tegak lurus dengan garis $y=x$ sehingga gradien garis singgungnya adalah $-1$. Selanjutnya kita cari nilai $x$ yang memenuhi $f'(x)=-1$
+		\begin{align*}
+		f'(x) = -\dfrac{1}{(x+2)^2} &= -1 \\
+		(x+2)^2 &=1\\
+		|x+2| &= 1 
+		\end{align*}
+		sehingga terdapat dua titik $x_0$ yang memenuhi, yaitu $x_0=-3$ dan $x_0=-1$. 
+		\begin{enumerate}
+			\item Untuk $x_0=-3$ kita peroleh $y_0=f(x_0)=f(-3)=0$ sehingga persamaan garis singgung di titik tersebut adalah 
+			\begin{align*}
+			y-y_0 &= m(x-x_0) \\
+			y &= -1(x-(-3)) \\
+			y &= -x-3 \\
+			x+y +3&= 0
+			\end{align*}
+			\item Untuk $x_0=-1$, kita peroleh $y_0=f(x_0)=f(-1)=2$ sehingga persamaan garis singgung di titik tersebut adalah 
+			\begin{align*}
+			y-y_0 &= m(x-x_0)\\
+			y-2 &= -1(x-(-1)) \\
+			y &= -x+1 \\
+			x+y-1 &= 0
+			\end{align*}
+		\end{enumerate}
+		Jadi terdapat dua titik $(x_0,y_0)$ pada kurva $f(x)$ yang garis singgungnya tegak lurus dengan garis $y=x$, yaitu titik $(-3,0)$ dengan garis singgung $x+y+3=0$ dan titik $(-1,2)$ dengan garis singgung $x+y-1=0$
+	\end{enumerate}
+	\newpage 
+	\item Diketahui $f'(x)=\sqrt{3x+4}$ dan $g(x)=x^2-1$. Didefinisikan $F(x)=f(g(x))$, dapatkan $F'(x)$\\
+	\textbf{Solusi:}\\
+	Untuk mendapatkan $F'(x)$ ingat kembali aturan rantai
+	\begin{align*}
+	F'(x) =f'(g(x))g'(x) = g'(x)\sqrt{3g(x)+4} = 2x\sqrt{3x^2+1}
+	\end{align*}
+	\item Tentukan nilai maksimum dan minimum dari fungsi $f(x)=\begin{cases} 4x-2, &x<1 \\
+	(x-2)(x-3), &x\geq 1\end{cases}$ pada $\left[\frac{1}{2},\frac{7}{2}\right]$
+	\\[0.1 cm] \textbf{Solusi:}\\
+	Akan kita cari masing-masing nilai maksimum dan minimum $f(x)$ pada selang $\left[\frac{1}{2},1\right)$ dan $\left[1,\frac{7}{2}\right]$
+	\begin{enumerate}
+		\item[i.] Untuk selang $\left[\frac{1}{2},1\right)$, diperoleh $f(x)=4x-2$ dan $f'(x)=4$, sehingga $f'(x)>0$ untuk setiap $x$ pada selang tersebut, serta $f(x)$ tidak memiliki titik stasioner. Oleh karena itu, dapat dicek pada batas selangnya, yaitu $f\left(\frac{1}{2}\right)=0$ adalah nilai minimum. Sedangkan nilai maksimumnya tidak ada, tetapi mendekati $\displaystyle \lim_{x\rightarrow 1^-} 4x-2 = 2$.
+		\item[ii.] Untuk selang $\left[1,\frac{7}{2}\right]$, diperoleh $f(x)=(x-2)(x-3)=x^2-5x+6$ dan $f'(x)=2x-5$. Dapat diperoleh pula $f''(x)=2$ sehingga $f''\left(\frac{5}{2}\right)=2>0$, artinya $x=\dfrac{5}{2}$ merupakan nilai minimum relatif. Selanjutnya dapat dicek nilai $f(x)$ pada batas selang dan titik stasioner 
+		\begin{align*}
+		f(1)&=(1-2)(1-3)=2 \\
+		f\left(\frac{5}{2}\right) &=\left(\frac{5}{2}-2\right)\left(\frac{5}{2}-2\right) = -\frac{1}{4} \\
+		f\left(\frac{7}{2}\right) &= \left(\frac{7}{2}-2\right)\left(\frac{7}{2}-3\right) = \frac{3}{4}
+		\end{align*}
+		sehingga nilai minimum pada selang $\left[1,\frac{7}{2}\right]$ adalah $f\left(\frac{5}{2}\right) = -\frac{1}{4}$ dan maksimum adalah $f(1)=2$
+	\end{enumerate}
+	Apabila kedua hasil tersebut digabungkan, dapat diperoleh nilai maksimum dan minimum global berturut-turut $f(1)=2$ dan $f\left(\frac{5}{2}\right) = -\frac{1}{4}$. Selain itu, diperoleh pula maksimum relatif dan minimum relatif berturut-turut $f\left(\frac{7}{2}\right)=\frac{3}{4}$ dan $f\left(\frac{1}{2}\right)=0$
+	\item Terdapat dua Kilang minyak lepas pantai, Kilang 1 berjarak 3 km dan Kilang 2 berjarak 4 km dari daratan, jarak Kilang 1 dan Kilang 2 adalah 5 km. Akan dibangun Tangki untuk menampung hasil kilang. Tangki terletak di daratan antara Kilang 1 dan Kilang 2 (lihat gambar). Tentukan letak Tangki dengan jarak minimum dari Kilang 1 dan Kilang 2.
+	\begin{center}
+	\begin{tikzpicture}[scale = 0.45]
+	\draw[thick] (-2,0) -- (12,0);
+	\draw[thick,blue,latex-latex] (0,0.1) -- (0,6);
+	\draw[thick,blue,latex-latex] (10,0.1) -- (10,8);
+	\draw[thick,blue,latex-latex] (0,-0.3) -- (10, -0.3);
+	\draw (10,8) node[above] {\includegraphics[scale=0.12]{kilang.png}};
+	\draw (9,8.5)  node[left] {\large{$K_2$}};
+	\draw (0,6) node[above] {\includegraphics[scale=0.12]{kilang.png}};
+	\draw (-1,6.5)  node[left] {\large{$K_1$}};
+	\draw (0,3) node[left] {3 km};
+	\draw (10,4) node[right] {4 km};
+	\draw (5,-0.3) node[below] {5 km};
+	\draw (5.8,-0.2) node[above] {\includegraphics[scale=0.5]{tangki.png}~Tangki};
+	\end{tikzpicture}
+\end{center}
+	\textbf{Solusi:}\\
+	Misalkan terdapat $P_1$ dan $P_2$ di daratan sehingga sehingga $P_1K_1=3$ km dan $P_2K_2=4$ km merupakan jarak antara Kilang 1 dan Kilang 2 ke daratan, akibatnya $P_1P_2=5$ km. Selanjutnya misalkan Tangki berada di titik $T$ dan $P_1T=x$, sehingga $P_2T=5-x$. Oleh karena itu, dapat diperoleh jarak antara Kilang 1 dengan Tangki adalah $K_1T=\sqrt{K_1P_1+P_1T^2}=\sqrt{x^2+9}$, serta jarak antara Kilang 2 dengan Tangki adalah $K_2T=\sqrt{K_2P_2+P_2T} = \sqrt{16+(5-x)^2}$. Karena kita perlu mencari jarak minimum $K_1T$ dan $K_2T$ sekaligus, maka jika kita jumlahkan jarak keduanya, pasti minimum juga. Misalkan jumlah jarak keduanya adalah $y=\sqrt{x^2+9}+\sqrt{16+(5-x)^2}$, maka minimumnya adalah titik $x$ saat $\dfrac{dy}{dx} = 0$ yaitu
+	\begin{align*}
+	\dfrac{dy}{dx} = \dfrac{2x}{2\sqrt{x^2+9}} + \dfrac{2(5-x)(-1)}{2\sqrt{16+(5-x)^2}} &= 0\\
+	\dfrac{x}{\sqrt{x^2+9}}+\dfrac{x-5}{\sqrt{x^2-10x+41}} &= 0 \\
+	\dfrac{x\sqrt{x^2-10x+41}+(x-5)\sqrt{x^2+9}}{\sqrt{x^2+9}\sqrt{x^2-10x+41}} &= 0\\
+	x\sqrt{x^2-10x+41}+(x-5)\sqrt{x^2+9} &= 0\\
+	x\sqrt{x^2-10x+41} &= (5-x)\sqrt{x^2+9} \\
+	x^2(x^2-10x+41) &= (x^2-10x+25)(x^2+9)\\
+	x^4-10x^3+41x^2 &= x^4+9x^2-10x^3-90x+25x^2+225 \\
+	7x^2+90x-225 &= 0\\
+	(x+15)(7x-15) &= 0 
+	\end{align*}
+	Karena $0<x<5$, maka $x=\dfrac{15}{7}$. Jadi jarak minimum Kilang 1 dengan Tangki adalah $$K_1T=\sqrt{9+x^2}=\sqrt{9+\left(\frac{15}{7}\right)^2}=\dfrac{3}{7}\sqrt{74} \text{ km}$$
+	serta jarak minimum Kilang 2 dengan Tangki adalah $$K_2T=\sqrt{16+(5-x)^2} = \sqrt{16+\left(5-\frac{15}{7}\right)^2} = \dfrac{4}{7}\sqrt{74} \text{ km}$$
+	\item Tentukan nilai integral berikut
+	\begin{enumerate}
+		\item $\displaystyle \int_0^2 |3x-2| \, dx$
+		\item $\displaystyle \int_{\frac{1}{2}}^1 \dfrac{1}{x^2}f\left(\dfrac{1}{x}\right) \, dx$ jika $\displaystyle \int_1^2 f(x) \, dx =3$
+	\end{enumerate}
+	\textbf{Solusi:}
+	\begin{enumerate}
+		\item Tinjau bahwa $|3x-2| = \begin{cases} 3x-2, &x\geq\frac{2}{3}\\
+		2-3x, &x<\frac{2}{3} \end{cases}$ sehingga 
+		\begin{align*}
+		\int_0^2 |3x-2| \, dx &= \int_0^{\frac{2}{3}} (2-3x) \, dx + \int_{\frac{2}{3}}^2 (3x-2) \, dx \\
+		&= \left[2x-\dfrac{3x^2}{2}\right]^{\frac{2}{3}}_0 + \left[\dfrac{3x^2}{2}-2x\right]_{\frac{2}{3}}^2\\
+		&= \frac{10}{3}
+		\end{align*}
+		\item Misalkan $u = \dfrac{1}{x}$ sehingga $du = -\dfrac{1}{x^2} \, dx$. \\Batas atas integral menjadi $u=\dfrac{1}{1}=1$ dan batas bawahnya menjadi $u=\dfrac{1}{\frac{1}{2}}=2$. Pada soal diketahui bahwa $\displaystyle \int_1^2 f(x)\, dx =3$ sehingga 
+		\begin{align*}
+		\int_{\frac{1}{2}}^1 \dfrac{1}{x^2}f\left(\frac{1}{x}\right) \, dx &= \int_2^1 -f(u) \, du\\
+		&= -\int_2^1 f(u) \,du\\
+		&= \int_1^2 f(u) \, du \\
+		&= 3
+		\end{align*}
+	\end{enumerate}
+\end{enumerate}
+\end{document}
